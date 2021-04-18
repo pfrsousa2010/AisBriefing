@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:EditContactXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Core.Views"
+                       xmlns:viewModels="clr-namespace:Core.ViewModels"
+                       xmlns:controls="clr-namespace:Core.Controls" 
+                       xmlns:extensions="clr-namespace:Core.Extensions"
+                       x:DataType="viewModels:EditContactViewModel"
+                       x:Class="Core.Views.EditContactPage"
+                       Shell.PresentationMode="Modal"
+                       Title="{extensions:Translate contact}">
+    <ScrollView>
+        <StackLayout Padding="12" Spacing="12">
+
+            <!--#region Name -->
+            <Label Text="{extensions:Translate name}" />
+            <Entry Text="{Binding Business.Model.Name, Mode=TwoWay}" />
+            <controls:LabelControl Text="{Binding Business.NameValidation, Mode=OneWay}"
+                                   TextColor="{StaticResource AlertColor}" />
+            <!--#endregion-->
+
+            <!--#region Phone -->
+            <Label Text="{extensions:Translate phone}" />
+            <Entry Text="{Binding Business.Model.Phone, Mode=TwoWay}"
+                   Keyboard="Telephone"/>
+
+            <controls:LabelControl Text="{Binding Business.PhoneValidation, Mode=OneWay}"
+                                   TextColor="{StaticResource AlertColor}" />
+            <!--#endregion-->
+
+            <!--#region Email -->
+            <Label Text="{extensions:Translate email}" />
+            <Entry Text="{Binding Business.Model.Email, Mode=TwoWay}"
+                   Keyboard="Email"/>
+
+            <controls:LabelControl Text="{Binding Business.EmailValidation, Mode=OneWay}"
+                                   TextColor="{StaticResource AlertColor}" />
+            <!--#endregion-->
+
+            <!--#region Group -->
+            <Label Text="{extensions:Translate group}" />
+
+            <Picker SelectedItem="{Binding Business.Model.Group, Mode=TwoWay}"
+                    ItemDisplayBinding="{Binding Name, Mode=OneWay}"
+                    
+                    ItemsSource="{Binding ContactGroups, Mode=OneWay}"/>
+
+            <controls:LabelControl Text="{Binding Business.GroupValidation, Mode=OneWay}"
+                                   TextColor="{StaticResource AlertColor}" />
+            <!--#endregion-->
+
+            <!--#region Note -->
+            <Label Text="{extensions:Translate note}" />
+            <Editor Text="{Binding Business.Model.Note, Mode=TwoWay}"/>
+            <!--#endregion-->
+
+            <!--#region Buttons -->
+            <Button Text="{extensions:Translate save}" Command="{Binding SaveCommand, Mode=OneWay}" />
+            <Button Text="{extensions:Translate cancel}" Command="{Binding CancelCommand, Mode=TwoWay}"/>
+            <!--#endregion-->
+            
+        </StackLayout>
+    </ScrollView>
+</views:EditContactXaml>

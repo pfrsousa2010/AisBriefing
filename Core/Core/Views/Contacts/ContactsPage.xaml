@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContactsXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:views="clr-namespace:Core.Views" 
+                    xmlns:viewmodels="clr-namespace:Core.ViewModels" 
+                    xmlns:business="clr-namespace:Core.Business"
+                    xmlns:extensions="clr-namespace:Core.Extensions"
+                    x:DataType="viewmodels:ContactsViewModel"
+                    x:Class="Core.Views.ContactsPage"
+                    Title="{extensions:Translate contacts}">
+
+    <views:ContactsXaml.ToolbarItems>
+        <ToolbarItem Text="{extensions:Translate add}" Command="{Binding NewCommand}" IconImageSource="{StaticResource Add}"/>
+        <ToolbarItem Text="{extensions:Translate refresh}" Command="{Binding RefreshCommand}" IconImageSource="{StaticResource Refresh}"/>
+    </views:ContactsXaml.ToolbarItems>
+    
+    <CollectionView ItemsSource="{Binding Items}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectCommand}"
+                    Margin="0,12">
+        
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView x:DataType="business:ContactBusiness">
+                    <SwipeView.RightItems>
+                        <SwipeItem IconImageSource="{StaticResource Remove}"
+                                   Invoked="OnRemove"/>
+                    </SwipeView.RightItems>
+
+                    <!--content-->
+                    <Grid>
+                        <Frame Margin="9,3">
+                            <Grid ColumnDefinitions="auto,*">
+
+                                <!--#region WhatsApp -->
+                                <Button Style="{StaticResource WhatsApp}" 
+                                        Command="{Binding OpenWhatAppCommand, Mode=OneWay}"
+                                        Margin="-12,0,0,0"
+                                        VerticalOptions="Center"
+                                        Grid.Column="0"/>
+                                <!--#endregion-->
+
+                                <StackLayout Grid.Column="1">
+                                    
+                                    <!--#region Name -->
+                                    <Label Text="{Binding Model.Name, Mode=OneWay}"
+                                           Style="{StaticResource TitleStyle}"
+                                           LineBreakMode="TailTruncation"/>
+                                    <!--#endregion-->
+
+                                    <!--#region Phone -->
+                                    <Label Text="{Binding Model.Phone, Mode=OneWay}"
+                                           FontSize="Subtitle"/>
+                                    <!--#endregion-->
+
+                                    <!--#region Group -->
+                                    <Label Text="{Binding Model.Group.Name, Mode=OneWay}"
+                                           FontSize="Subtitle"/>
+                                    <!--#endregion-->
+                                    
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</views:ContactsXaml>

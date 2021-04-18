@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:EditSettingsXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:views="clr-namespace:Core.Views"
+                        xmlns:viewModels="clr-namespace:Core.ViewModels"
+                        xmlns:extensions ="clr-namespace:Core.Extensions"    
+                        x:DataType="viewModels:SettingsViewModel"
+                        x:Class="Core.Views.EditSettingsPage"
+                        Shell.PresentationMode="ModalAnimated"
+                        Title="{extensions:Translate settings}">
+    
+    <StackLayout Spacing="12">
+
+        <!--#region Logo -->
+        <Image Source="{AppThemeBinding Dark={extensions:ImageResource Core.Images.logo-dark.png}, Light={extensions:ImageResource Core.Images.logo-light.png}}"
+               HeightRequest="120"
+               Margin="0,30,0,0"/>
+        <!--#endregion-->
+
+        <!--#region Theme -->
+        <Frame Margin="12,0">
+            <StackLayout Spacing="12">
+
+                <Label Text="{extensions:Translate theme}" Style="{StaticResource TitleStyle}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{extensions:Translate dark}"
+                           HorizontalOptions="FillAndExpand"/>
+
+                    <Switch IsToggled="{Binding Business.IsDark, Mode=TwoWay}"/>
+                </StackLayout>
+
+            </StackLayout>
+        </Frame>
+        <!--#endregion-->
+
+    </StackLayout>
+</views:EditSettingsXaml>

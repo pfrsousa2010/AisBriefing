@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
+    <MultilingualFallbackLanguage>en-US</MultilingualFallbackLanguage>
+    <TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
+    <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.ResxResources.targets')" />
+  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
+    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
+  </Target>
+  <ItemGroup>
+    <Compile Remove="Enums\**" />
+    <Compile Remove="ViewModels\Settings\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="ViewModels\Settings\**" />
+    <None Remove="Enums\**" />
+    <None Remove="ViewModels\Settings\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Fonts\icofont.ttf" />
+    <None Remove="Fonts\material.ttf" />
+    <None Remove="Images\logo-dark.png" />
+    <None Remove="Images\logo-light.png" />
+    <None Remove="MultilingualResources\Core.pt-BR.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\icofont.ttf" />
+    <EmbeddedResource Include="Fonts\material.ttf" />
+    <EmbeddedResource Include="Images\logo-dark.png" />
+    <EmbeddedResource Include="Images\logo-light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.5.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\Core.pt-BR.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="AppShell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Contacts\ContactsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Contacts\EditContactPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Countries\CountriesSelectPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ContactGroups\ContactGroupsPage.xaml.cs">
+      <DependentUpon>ContactGroupsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ContactGroups\EditContactGroupPage.xaml.cs">
+      <DependentUpon>EditContactGroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Contacts\ContactDetailsPage.xaml.cs">
+      <DependentUpon>ContactDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Settings\EditSettingsPage.xaml.cs">
+      <DependentUpon>EditSettingsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

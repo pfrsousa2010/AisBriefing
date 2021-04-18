@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="pt-BR" original="CORE/RESOURCES/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6916.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="CORE/RESOURCES/RESOURCES.RESX" datatype="resx">
+        <trans-unit id="add" translate="yes" xml:space="preserve">
+          <source>Add</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Adicionar</target>
+        </trans-unit>
+        <trans-unit id="cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Cancelar</target>
+        </trans-unit>
+        <trans-unit id="clients" translate="yes" xml:space="preserve">
+          <source>Clients</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Clientes</target>
+        </trans-unit>
+        <trans-unit id="contact" translate="yes" xml:space="preserve">
+          <source>Contact</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Contato</target>
+        </trans-unit>
+        <trans-unit id="contacts" translate="yes" xml:space="preserve">
+          <source>Contacts</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Contatos</target>
+        </trans-unit>
+        <trans-unit id="dark" translate="yes" xml:space="preserve">
+          <source>Dark</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Escuro</target>
+        </trans-unit>
+        <trans-unit id="edit" translate="yes" xml:space="preserve">
+          <source>Edit</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Editar</target>
+        </trans-unit>
+        <trans-unit id="email" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">E-mail</target>
+        </trans-unit>
+        <trans-unit id="family" translate="yes" xml:space="preserve">
+          <source>Family</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Família</target>
+        </trans-unit>
+        <trans-unit id="group" translate="yes" xml:space="preserve">
+          <source>Group</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Grupo</target>
+        </trans-unit>
+        <trans-unit id="groups" translate="yes" xml:space="preserve">
+          <source>Groups</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Grupos</target>
+        </trans-unit>
+        <trans-unit id="name" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Nome</target>
+        </trans-unit>
+        <trans-unit id="note" translate="yes" xml:space="preserve">
+          <source>Note</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Nota</target>
+        </trans-unit>
+        <trans-unit id="phone" translate="yes" xml:space="preserve">
+          <source>Phone</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Telefone</target>
+        </trans-unit>
+        <trans-unit id="providers" translate="yes" xml:space="preserve">
+          <source>Providers</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Provedores</target>
+        </trans-unit>
+        <trans-unit id="refresh" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Atualizar</target>
+        </trans-unit>
+        <trans-unit id="save" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Salvar</target>
+        </trans-unit>
+        <trans-unit id="settings" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Configurações</target>
+        </trans-unit>
+        <trans-unit id="theme" translate="yes" xml:space="preserve">
+          <source>Theme</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Tema</target>
+        </trans-unit>
+        <trans-unit id="work" translate="yes" xml:space="preserve">
+          <source>Work</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Trabalho</target>
+        </trans-unit>
+        <trans-unit id="social-media" translate="yes" xml:space="preserve">
+          <source>Social Media</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Mídia Social</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
