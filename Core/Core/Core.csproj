@@ -96,6 +96,12 @@
     <Compile Update="Views\Contacts\ContactDetailsPage.xaml.cs">
       <DependentUpon>ContactDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Locations\EditLocationPage.xaml.cs">
+      <DependentUpon>EditLocationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Locations\LocationsPage.xaml.cs">
+      <DependentUpon>LocationsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Settings\EditSettingsPage.xaml.cs">
       <DependentUpon>EditSettingsPage.xaml</DependentUpon>
     </Compile>

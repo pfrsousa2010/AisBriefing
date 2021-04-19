@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:LocationsXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:views="clr-namespace:Core.Views" 
+                         xmlns:viewmodels="clr-namespace:Core.ViewModels" 
+                         xmlns:business="clr-namespace:Core.Business"
+                         xmlns:extensions="clr-namespace:Core.Extensions"
+                         x:DataType="viewmodels:LocationsViewModels"
+                         x:Class="Core.Views.LocationsPage"
+                         Title="{extensions:Translate locations}">
+
+    <views:LocationsXaml.ToolbarItems>
+        <ToolbarItem Text="{extensions:Translate add}" Command="{Binding NewCommand}" IconImageSource="{StaticResource Add}"/>
+    </views:LocationsXaml.ToolbarItems>
+    
+    <CollectionView ItemsSource="{Binding Items}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectCommand}"
+                    Margin="0,12">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    
+                    <SwipeView x:DataType="business:LocationBusiness">
+                        <SwipeView.RightItems>
+                            <SwipeItem IconImageSource="{StaticResource Remove}"
+                                       Invoked="OnRemove"/>
+                        </SwipeView.RightItems>
+
+                        <!--content-->
+                        <Grid>
+
+                            <Frame Margin="9,3">
+                                <StackLayout>
+                                    <!--#region Id ICAO -->
+                                    <Label Text="{Binding Model.IdIcao, Mode=OneWay}"
+                                       Style="{StaticResource TitleStyle}"/>
+                                    <!--#endregion-->
+
+                                    <!--#region Name -->
+                                    <Label Text="{Binding Model.Name, Mode=OneWay}" />
+                                    <!--#endregion-->
+                                </StackLayout>
+                            </Frame>
+                            
+                            
+                        </Grid>
+                    </SwipeView>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</views:LocationsXaml>

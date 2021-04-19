@@ -11,14 +11,10 @@
        Shell.TabBarUnselectedColor="Gray"
        x:Class="Core.AppShell">
     <TabBar>
-        <ShellContent Title="{extensions:Translate contacts}" 
-                      Icon="{StaticResource Person}"
-                      ContentTemplate="{DataTemplate views:ContactsPage}" />
-
-        <ShellContent Title="{extensions:Translate groups}" 
-                      Icon="{StaticResource People}"
-                      ContentTemplate="{DataTemplate views:ContactGroupsPage}" />
-
+        <ShellContent Title="{extensions:Translate locations}" 
+                      Icon="{StaticResource Locations}"
+                      ContentTemplate="{DataTemplate views:LocationsPage}" />
+        
         <ShellContent Title="{extensions:Translate settings}" 
                       Icon="{StaticResource Settings}"
                       ContentTemplate="{DataTemplate views:EditSettingsPage}" />

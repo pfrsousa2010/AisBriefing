@@ -75,4 +75,10 @@
   <data name="social-media" xml:space="preserve">
     <value>Mídia Social</value>
   </data>
+  <data name="location" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="locations" xml:space="preserve">
+    <value>Locais</value>
+  </data>
 </root>

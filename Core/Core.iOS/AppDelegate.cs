@@ -32,7 +32,7 @@ namespace Core.iOS
                 Directory.CreateDirectory(libPath);
             }
 
-            var dbPath = Path.Combine(libPath, "core.sqlite");
+            var dbPath = Path.Combine(libPath, "aisbriefing.sqlite");
             LoadApplication(new App(dbPath));
             return base.FinishedLaunching(app, options);
         }

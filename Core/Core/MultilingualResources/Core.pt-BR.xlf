@@ -90,6 +90,14 @@
           <source>Social Media</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Mídia Social</target>
         </trans-unit>
+        <trans-unit id="location" translate="yes" xml:space="preserve">
+          <source>Location</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Local</target>
+        </trans-unit>
+        <trans-unit id="locations" translate="yes" xml:space="preserve">
+          <source>Locations</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Locais</target>
+        </trans-unit>
       </group>
     </body>
   </file>

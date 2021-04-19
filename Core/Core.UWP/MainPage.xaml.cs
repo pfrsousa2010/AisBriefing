@@ -10,7 +10,7 @@ namespace Core.UWP
         {
             this.InitializeComponent();
             
-            var dbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "core.sqlite");
+            var dbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "aisbriefing.sqlite");
             LoadApplication(new Core.App(dbPath));
         }
     }

@@ -39,5 +39,52 @@
       <FileName>Models\Settings.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Core.Models.AipSuplement">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="location" Hidden="true" />
+      <Field Name="period" Hidden="true" />
+      <Field Name="supId" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+      <Field Name="title" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAQAAAAEAAAAIAAAACAAAAAAAIAAAACggAAAI=</HashCode>
+      <FileName>Models\AipSuplement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Core.Models.Location">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="idIcao" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAIAAAACAAQAAAAEAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Models\Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Models.Notam">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <Members>
+      <Field Name="endDate" Hidden="true" />
+      <Field Name="location" Hidden="true" />
+      <Field Name="message" Hidden="true" />
+      <Field Name="notamId" Hidden="true" />
+      <Field Name="startDate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAACIAAAAiAgAAAAIAAAAAIEAAACA=</HashCode>
+      <FileName>Models\Notam.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

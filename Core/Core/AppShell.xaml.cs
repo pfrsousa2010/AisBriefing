@@ -18,6 +18,8 @@ namespace Core
 
             Routing.RegisterRoute(nameof(ContactGroupsViewModel), typeof(ContactGroupsPage));
             Routing.RegisterRoute(nameof(EditContactGroupViewModel), typeof(EditContactGroupPage));
+            
+            Routing.RegisterRoute(nameof(EditLocationViewModel), typeof(EditLocationPage));
 
         }
     }

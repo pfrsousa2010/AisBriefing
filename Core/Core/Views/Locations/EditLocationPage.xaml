@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:EditLocationXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                            xmlns:views="clr-namespace:Core.Views"
+                            xmlns:viewModels="clr-namespace:Core.ViewModels"
+                            xmlns:controls="clr-namespace:Core.Controls" 
+                            xmlns:extensions="clr-namespace:Core.Extensions"
+                            x:DataType="viewModels:EditLocationViewModel"
+                            x:Class="Core.Views.EditLocationPage"
+                            Shell.PresentationMode="Modal"
+                            Title="{extensions:Translate location}">
+    <ScrollView>
+        <StackLayout Padding="12" Spacing="12">
+            
+            <!--#region Name -->
+            <Label Text="{extensions:Translate name}"/>
+            <Entry Text="{Binding Business.Model.Name, Mode=TwoWay}"/>
+            <controls:LabelControl Text="{Binding Business.NameValidation, Mode=OneWay}" TextColor="{StaticResource AlertColor}"/>
+            <!--#endregion-->
+            
+            <!--#region IdIcao -->
+            <Label Text="ID ICAO"/>
+            <Entry Text="{Binding Business.Model.IdIcao, Mode=TwoWay}"/>
+            <controls:LabelControl Text="{Binding Business.IdIcaoValidation, Mode=OneWay}" TextColor="{StaticResource AlertColor}"/>
+            <!--#endregion-->
+
+            <!--#region Buttons -->
+            <Button Text="{extensions:Translate save}" Command="{Binding SaveCommand, Mode=OneWay}"/>
+            <Button Text="{extensions:Translate cancel}" Command="{Binding CancelCommand, Mode=TwoWay}"/>
+            <!--#endregion-->
+            
+        </StackLayout>
+    </ScrollView>
+
+</views:EditLocationXaml>

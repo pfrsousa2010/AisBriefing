@@ -53,11 +53,13 @@
 
             <!-- Font images-->
             <FontImage x:Key="Add" FontFamily="Material" Glyph="&#xE145;" />
+            <FontImage x:Key="Locations" FontFamily="Material" Glyph="&#xE0C8;" />
             <FontImage x:Key="Person" FontFamily="Material" Glyph="&#xE7FD;" />
             <FontImage x:Key="People" FontFamily="Material" Glyph="&#xE7FB;" />
             <FontImage x:Key="Refresh" FontFamily="Material" Glyph="&#xE042;" />
             <FontImage x:Key="Remove" FontFamily="IcoFont" Glyph="&#xEE09;" />
             <FontImage x:Key="Settings" FontFamily="Material" Glyph="&#xE8B8;" />
+            
 
             <!--buttons-->
             <Style TargetType="Button" x:Key="WhatsApp">

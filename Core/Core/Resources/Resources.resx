@@ -150,6 +150,12 @@
   <data name="groups" xml:space="preserve">
     <value>Groups</value>
   </data>
+  <data name="location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="locations" xml:space="preserve">
+    <value>Locations</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Name</value>
   </data>

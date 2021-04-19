@@ -35,6 +35,7 @@ namespace Core.Databases
          }
 
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Location> Locations { get; set; }
         public DbSet<ContactGroup> ContactGroups{ get; set; }
 
         public DbSet<Settings> Settings { get; set; }
