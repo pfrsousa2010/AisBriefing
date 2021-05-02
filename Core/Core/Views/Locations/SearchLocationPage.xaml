@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:SearchLocationXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:views="clr-namespace:Core.Views" 
+                             xmlns:viewmodels="clr-namespace:Core.ViewModels" 
+                             xmlns:models="clr-namespace:Core.Models"
+                             xmlns:extensions="clr-namespace:Core.Extensions"
+                             x:DataType="viewmodels:SearchLocationViewModel"
+                             x:Class="Core.Views.SearchLocationPage"
+                             Title="{extensions:Translate search-location}">
+
+    <Shell.SearchHandler>
+        <SearchHandler  Command="{Binding SearchCommand, Mode=OneWay}" 
+                        Query="{Binding Text, Mode=TwoWay}"
+                        ShowsResults="true"
+                        DisplayMemberName="searchLocations">
+        </SearchHandler>
+    </Shell.SearchHandler>
+
+    <StackLayout>
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+            <CollectionView ItemsSource="{Binding Items}"   
+                            
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectedCommand}"
+                    Margin="0,12">
+                <CollectionView.EmptyView>
+                    <Label Text="empty"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Location">
+                        <!--content-->
+
+                        <Frame Margin="9,3">
+                            <StackLayout>
+                                <!--#region Id ICAO -->
+                                <Label Text="{Binding IdIcao, Mode=OneWay}"
+                                           TextTransform="Uppercase"
+                                           Style="{StaticResource TitleStyle}"/>
+                                <!--#endregion-->
+
+                                <!--#region Name -->
+                                <Label Text="{Binding Name, Mode=OneWay}" />
+                                <Label Text="{Binding City, Mode=OneWay}" />
+                                <!--#endregion-->
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
+
+</views:SearchLocationXaml>

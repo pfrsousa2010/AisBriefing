@@ -232,6 +232,15 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search location.
+        /// </summary>
+        internal static string search_location {
+            get {
+                return ResourceManager.GetString("search-location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string settings {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,22 +9,35 @@ namespace Core.Models
     {
         #region Fields
         string idIcao; 
-        string name; 
+        string name;
+        string city;
         #endregion
 
+        [JsonProperty(PropertyName = "icao")]
         public string IdIcao
         {
             get => idIcao;
             set => SetProperty(ref idIcao, value);
         }
 
+        [JsonProperty(PropertyName = "name")]
         public string Name
         {
             get => name;
             set => SetProperty(ref name, value);
         }
 
+        [JsonProperty(PropertyName = "city")]
+        public string City
+        {
+            get => city;
+            set => SetProperty(ref city, value);
+        }
+
+        [JsonIgnore]
         public List<Notam> Notams { get; set; }
+        
+        [JsonIgnore]
         public List<AipSuplement> AipSuplements { get; set; }        
     }
 

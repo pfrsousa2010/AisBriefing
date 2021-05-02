@@ -29,6 +29,7 @@
     <None Remove="ViewModels\Settings\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Files\locations.json" />
     <None Remove="Fonts\icofont.ttf" />
     <None Remove="Fonts\material.ttf" />
     <None Remove="Images\logo-dark.png" />
@@ -39,6 +40,7 @@
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Files\locations.json" />
     <EmbeddedResource Include="Fonts\icofont.ttf" />
     <EmbeddedResource Include="Fonts\material.ttf" />
     <EmbeddedResource Include="Images\logo-dark.png" />
@@ -87,17 +89,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\ContactGroups\ContactGroupsPage.xaml.cs">
-      <DependentUpon>ContactGroupsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ContactGroups\EditContactGroupPage.xaml.cs">
-      <DependentUpon>EditContactGroupPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Contacts\ContactDetailsPage.xaml.cs">
       <DependentUpon>ContactDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Locations\EditLocationPage.xaml.cs">
-      <DependentUpon>EditLocationPage.xaml</DependentUpon>
+    <Compile Update="Views\Locations\SearchLocationPage.xaml.cs">
+      <DependentUpon>SearchLocationPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Locations\LocationsPage.xaml.cs">
       <DependentUpon>LocationsPage.xaml</DependentUpon>
@@ -105,5 +101,8 @@
     <Compile Update="Views\Settings\EditSettingsPage.xaml.cs">
       <DependentUpon>EditSettingsPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Locations\NewFolder\" />
   </ItemGroup>
 </Project>

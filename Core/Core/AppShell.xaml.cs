@@ -12,14 +12,8 @@ namespace Core
         {
             InitializeComponent();
             
-            Routing.RegisterRoute(nameof(ContactsViewModel), typeof(ContactsPage));
-            Routing.RegisterRoute(nameof(ContactDetailsViewModel), typeof(ContactDetailsPage));
-            Routing.RegisterRoute(nameof(EditContactViewModel), typeof(EditContactPage));
-
-            Routing.RegisterRoute(nameof(ContactGroupsViewModel), typeof(ContactGroupsPage));
-            Routing.RegisterRoute(nameof(EditContactGroupViewModel), typeof(EditContactGroupPage));
-            
-            Routing.RegisterRoute(nameof(EditLocationViewModel), typeof(EditLocationPage));
+             
+            Routing.RegisterRoute(nameof(SearchLocationViewModel), typeof(SearchLocationPage));
 
         }
     }

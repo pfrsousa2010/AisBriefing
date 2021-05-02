@@ -5,51 +5,56 @@
                          xmlns:viewmodels="clr-namespace:Core.ViewModels" 
                          xmlns:business="clr-namespace:Core.Business"
                          xmlns:extensions="clr-namespace:Core.Extensions"
-                         x:DataType="viewmodels:LocationsViewModels"
+                         x:DataType="viewmodels:LocationsViewModel"
                          x:Class="Core.Views.LocationsPage"
                          Title="{extensions:Translate locations}">
 
     <views:LocationsXaml.ToolbarItems>
-        <ToolbarItem Text="{extensions:Translate add}" Command="{Binding NewCommand}" IconImageSource="{StaticResource Add}"/>
+        <ToolbarItem Text="{extensions:Translate add}" Command="{Binding SearchCommand}" IconImageSource="{StaticResource Add}"/>
     </views:LocationsXaml.ToolbarItems>
-    
-    <CollectionView ItemsSource="{Binding Items}"
+
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding Items}"
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                     SelectionChangedCommand="{Binding SelectCommand}"
                     Margin="0,12">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid>
-                    
-                    <SwipeView x:DataType="business:LocationBusiness">
-                        <SwipeView.RightItems>
-                            <SwipeItem IconImageSource="{StaticResource Remove}"
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+
+                        <SwipeView x:DataType="business:LocationBusiness">
+                            <SwipeView.RightItems>
+                                <SwipeItem BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" 
+                                           IconImageSource="{StaticResource Remove}"
                                        Invoked="OnRemove"/>
-                        </SwipeView.RightItems>
+                            </SwipeView.RightItems>
 
-                        <!--content-->
-                        <Grid>
+                            <!--content-->
+                            <Grid>
 
-                            <Frame Margin="9,3">
-                                <StackLayout>
-                                    <!--#region Id ICAO -->
-                                    <Label Text="{Binding Model.IdIcao, Mode=OneWay}"
-                                       Style="{StaticResource TitleStyle}"/>
-                                    <!--#endregion-->
+                                <Frame Margin="9,3">
+                                    <StackLayout>
+                                        <!--#region Id ICAO -->
+                                        <Label Text="{Binding Model.IdIcao, Mode=OneWay}"
+                                           TextTransform="Uppercase"
+                                           Style="{StaticResource TitleStyle}"/>
+                                        <!--#endregion-->
 
-                                    <!--#region Name -->
-                                    <Label Text="{Binding Model.Name, Mode=OneWay}" />
-                                    <!--#endregion-->
-                                </StackLayout>
-                            </Frame>
-                            
-                            
-                        </Grid>
-                    </SwipeView>
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                                        <!--#region Name -->
+                                        <Label Text="{Binding Model.Name, Mode=OneWay}" />
+                                        <Label Text="{Binding Model.City, Mode=OneWay}" />
+                                        <!--#endregion-->
+                                    </StackLayout>
+                                </Frame>
+
+
+                            </Grid>
+                        </SwipeView>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 
 </views:LocationsXaml>

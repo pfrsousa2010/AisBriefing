@@ -98,6 +98,10 @@
           <source>Locations</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Locais</target>
         </trans-unit>
+        <trans-unit id="search-location" translate="yes" xml:space="preserve">
+          <source>Search location</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Local de pesquisa</target>
+        </trans-unit>
       </group>
     </body>
   </file>

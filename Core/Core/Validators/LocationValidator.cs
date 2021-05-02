@@ -10,8 +10,9 @@ namespace Core.Validators
     {
         public LocationValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("name is required.");
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
             RuleFor(x => x.IdIcao).NotEmpty().WithMessage("ID ICAO is required.");
+            RuleFor(x => x.City).NotEmpty().WithMessage("City is required.");
         }
     }
 }

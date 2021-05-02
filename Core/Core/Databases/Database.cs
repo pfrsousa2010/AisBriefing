@@ -34,9 +34,9 @@ namespace Core.Databases
             
          }
 
-        public DbSet<Contact> Contacts { get; set; }
+
         public DbSet<Location> Locations { get; set; }
-        public DbSet<ContactGroup> ContactGroups{ get; set; }
+
 
         public DbSet<Settings> Settings { get; set; }
 
@@ -52,25 +52,15 @@ namespace Core.Databases
 
         public void Initialize()
         {
+
             Database.Migrate();
+            
 
             if (Settings.Count() == 0)
             {
                 Settings.Add(new Settings());
             }
 
-            if (ContactGroups.Count() == 0)
-            {
-                ContactGroups.AddRange(new[]
-                {
-                    new ContactGroup{Name = "family".Translate()},
-                    new ContactGroup{Name = "work".Translate()},
-                    new ContactGroup{Name = "social-media".Translate()},
-                    new ContactGroup{Name = "clients".Translate()},
-                    new ContactGroup{Name = "contacts".Translate()},
-                    new ContactGroup{Name = "providers".Translate()},
-                });
-            }
 
             SaveChanges();
         }
@@ -85,7 +75,7 @@ namespace Core.Databases
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ContactGroup>().HasMany(group => group.Contacts).WithOne(contact => contact.Group).HasForeignKey(contact => contact.GroupId).OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<ContactGroup>().HasMany(group => group.Contacts).WithOne(contact => contact.Group).HasForeignKey(contact => contact.GroupId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -22,10 +22,10 @@ namespace Core
 
         public App(string dbPath)
         {
-
+            // dependency injection
             DependencyService.Register<Navigation>();
+            
             Constants.DatabasePath = dbPath;
-
             var settingsManager = new SettingsManager();
             var settings = settingsManager.GetSettings();
 

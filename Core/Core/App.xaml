@@ -92,7 +92,7 @@
             </Style>
 
             <!--SwipeItemView-->
-            <Style TargetType="SwipeItemView">
+            <Style TargetType="SwipeView">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"/>
             </Style>
 

@@ -25,5 +25,5 @@ namespace Core.Views
         }
     }
 
-    public class LocationsXaml : BasePage<LocationsViewModels> { }
+    public class LocationsXaml : BasePage<LocationsViewModel> { }
 }

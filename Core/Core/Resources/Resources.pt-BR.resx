@@ -81,4 +81,7 @@
   <data name="locations" xml:space="preserve">
     <value>Locais</value>
   </data>
+  <data name="search-location" xml:space="preserve">
+    <value>Local de pesquisa</value>
+  </data>
 </root>
