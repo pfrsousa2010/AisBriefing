@@ -11,9 +11,7 @@
 
     <Shell.SearchHandler>
         <SearchHandler  Command="{Binding SearchCommand, Mode=OneWay}" 
-                        Query="{Binding Text, Mode=TwoWay}"
-                        ShowsResults="true"
-                        DisplayMemberName="searchLocations">
+                        Query="{Binding Text, Mode=TwoWay}">
         </SearchHandler>
     </Shell.SearchHandler>
 
@@ -26,12 +24,14 @@
                     SelectionChangedCommand="{Binding SelectedCommand}"
                     Margin="0,12">
                 <CollectionView.EmptyView>
-                    <Label Text="empty"/>
+                    <Label Text="Search for the Icao, City or Name of the airport."
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Location">
                         <!--content-->
-
                         <Frame Margin="9,3">
                             <StackLayout>
                                 <!--#region Id ICAO -->

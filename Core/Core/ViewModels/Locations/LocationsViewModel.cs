@@ -18,12 +18,13 @@ namespace Core.ViewModels
     {
         public ICommand SearchCommand { get; }
         public ICommand AddLocationCommand { get; }
+        public ICommand SelectedLocationCommand { get; }
 
 
         public LocationsViewModel()
         {
             SearchCommand = new AsyncCommand(OnSearch);
-            AddLocationCommand = new Command<Location>(OnAddLocation);
+            AddLocationCommand = new Command<Location>(OnAddLocation);            
         }
 
         private void OnAddLocation(Location location)

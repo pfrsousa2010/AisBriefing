@@ -12,6 +12,7 @@ namespace Core.Business
         public string NameValidation => Erros?.Where(s => s.PropertyName == nameof(Model.Name)).FirstOrDefault()?.ErrorMessage;
         public string IdIcaoValidation => Erros?.Where(s => s.PropertyName == nameof(Model.IdIcao)).FirstOrDefault()?.ErrorMessage;
         public string CityValidation => Erros?.Where(s => s.PropertyName == nameof(Model.City)).FirstOrDefault()?.ErrorMessage;
+        public string CountryValidation => Erros?.Where(s => s.PropertyName == nameof(Model.Country)).FirstOrDefault()?.ErrorMessage;
     
         public LocationBusiness()
         {
@@ -24,6 +25,7 @@ namespace Core.Business
             OnPropertyChanged(nameof(NameValidation));
             OnPropertyChanged(nameof(IdIcaoValidation));
             OnPropertyChanged(nameof(CityValidation));
+            OnPropertyChanged(nameof(CountryValidation));
 
 
         }

@@ -13,6 +13,7 @@ namespace Core.Validators
             RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
             RuleFor(x => x.IdIcao).NotEmpty().WithMessage("ID ICAO is required.");
             RuleFor(x => x.City).NotEmpty().WithMessage("City is required.");
+            RuleFor(x => x.Country).NotEmpty().WithMessage("Country is required.");
         }
     }
 }

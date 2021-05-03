@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.ViewModels.Notams
 {
-    class NotamsViewModels
+    public class NotamsViewModel
     {
     }
 }

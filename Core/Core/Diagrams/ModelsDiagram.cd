@@ -33,11 +33,13 @@
   <Class Name="Core.Models.Location">
     <Position X="6" Y="2" Width="1.5" />
     <Members>
+      <Field Name="city" Hidden="true" />
+      <Field Name="country" Hidden="true" />
       <Field Name="idIcao" Hidden="true" />
       <Field Name="name" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAIAAAACAAQAAAAEAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAIIAAACCAQAAAIEAAACACAAAAAAAAA=</HashCode>
       <FileName>Models\Location.cs</FileName>
     </TypeIdentifier>
   </Class>

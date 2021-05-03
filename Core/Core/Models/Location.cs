@@ -11,6 +11,7 @@ namespace Core.Models
         string idIcao; 
         string name;
         string city;
+        string country;
         #endregion
 
         [JsonProperty(PropertyName = "icao")]
@@ -32,6 +33,12 @@ namespace Core.Models
         {
             get => city;
             set => SetProperty(ref city, value);
+        }
+        [JsonProperty(PropertyName = "country")]
+        public string Country
+        {
+            get => country;
+            set => SetProperty(ref country, value);
         }
 
         [JsonIgnore]
