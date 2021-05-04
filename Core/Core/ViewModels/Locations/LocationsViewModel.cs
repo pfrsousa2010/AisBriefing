@@ -14,11 +14,11 @@ using System.Windows.Input;
 
 namespace Core.ViewModels
 {
-    public class LocationsViewModel : BaseCollectionViewModel<Location, LocationBusiness, BaseManager<Location>>
+    public class LocationsViewModel : BaseCollectionViewModel<Location, LocationBusiness, LocationsManager>
     {
         public ICommand SearchCommand { get; }
         public ICommand AddLocationCommand { get; }
-        public ICommand SelectedLocationCommand { get; }
+        
 
 
         public LocationsViewModel()

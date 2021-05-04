@@ -94,10 +94,12 @@ namespace Core.ViewModels
             if (Text.Trim().Length >= 3)
             {
                 Items.ReplaceRange(searchLocations
-                .Where(s =>                
-                s.City.ToUpper().Contains(Text.ToUpper().Trim()) ||
+                .Where(s => 
+                s.Country == "BR" &&
+                (s.City.ToUpper().Contains(Text.ToUpper().Trim()) ||
                 s.Name.ToUpper().Contains(Text.ToUpper().Trim()) ||
-                s.IdIcao == Text.ToUpper().Trim()).Take(100));
+                s.IdIcao == Text.ToUpper().Trim())
+                ).Take(100));
             }  
         }
     }
