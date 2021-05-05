@@ -19,7 +19,7 @@ namespace Core.Services
                 var uri = new Uri(string.Format($"https://aisweb.decea.mil.br/api/?apiKey=1948175746&apiPass=cba6ae56-a1dd-11ea-9f40-00505680c1b4&area=notam&icaocode={icaos}", string.Empty));
                 var http = new HttpClient();
 
-                var response = await http.GetAsync(uri);
+                HttpResponseMessage response = await http.GetAsync(uri);
 
                 var status = response.EnsureSuccessStatusCode();
                 List<NotamCollection> result = null;
