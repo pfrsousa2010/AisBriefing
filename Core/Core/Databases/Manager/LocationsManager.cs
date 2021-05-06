@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Core.Databases
 {
     public class LocationsManager : BaseManager<Location>
-    {
+    {       
         public override async Task Add(Location entity)
         {
             var aisWebService = new AisWebService();
@@ -30,11 +30,15 @@ namespace Core.Databases
                     entity.Notams.Add(new Models.Notam
                     {
                         Message = notam.Text,
+                        StartDate = notam.StDate,
+                        EndDate = notam.EdDate
                     });
                 }
+                
             }
 
-            await base.Add(entity);
+            await base.Add(entity);         
+            
         }
     }
 }

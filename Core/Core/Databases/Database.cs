@@ -36,7 +36,7 @@ namespace Core.Databases
 
         public DbSet<Location> Locations { get; set; }
 
-        public DbSet<Notam> Notams { get; set; }
+        public DbSet<Notam> Notams { get; set; } // criar supaip aqui tbm igual
 
         public DbSet<Settings> Settings { get; set; }
 
@@ -73,9 +73,10 @@ namespace Core.Databases
             }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //Comportamento em cascata
         {
             modelBuilder.Entity<Location>().HasMany(location => location.Notams).WithOne(notam => notam.Location).HasForeignKey(notam => notam.LocationId).OnDelete(DeleteBehavior.Cascade);
+            // criar supaip aqui tbm igual
         }
     }
 }

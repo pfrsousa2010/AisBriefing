@@ -12,5 +12,9 @@ namespace Core.Services
 
         [XmlElement("e")]
         public string Text { get; set; }
+        [XmlElement("b")]
+        public string StDate { get; set; }
+        [XmlElement("c")]
+        public string EdDate { get; set; }
     }
 }

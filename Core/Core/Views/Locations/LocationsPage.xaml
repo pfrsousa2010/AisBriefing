@@ -52,9 +52,13 @@
                                         <StackLayout BindableLayout.ItemsSource="{Binding Model.Notams}">
                                             <BindableLayout.ItemTemplate>
                                                 <DataTemplate>
-                                                    <StackLayout x:DataType="models:Notam">
-                                                        <Label Text="{Binding Message, Mode=OneWay}"/>
-                                                    </StackLayout>
+                                                    <Frame>
+                                                        <StackLayout x:DataType="models:Notam">
+                                                            <Label Text="{Binding Message, Mode=OneWay}"/>
+                                                            <Label Text="{Binding StartDate, Mode=OneWay}"/>
+                                                            <Label Text="{Binding EndDate, Mode=OneWay}"/>
+                                                        </StackLayout>
+                                                    </Frame>                                                    
                                                 </DataTemplate>
                                             </BindableLayout.ItemTemplate>
                                         </StackLayout>
