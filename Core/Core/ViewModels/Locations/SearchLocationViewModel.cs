@@ -19,8 +19,8 @@ namespace Core.ViewModels
     {
         #region Fields
         string text;
-        ICommand callBackCommand;
         Location selectedItem;
+        AsyncCommand<Location> callBackAsync;
         #endregion
 
         public ObservableRangeCollection<Location> Items { get; }
@@ -32,20 +32,18 @@ namespace Core.ViewModels
         }
         public ICommand SearchCommand { get; }
         public ICommand SelectedCommand { get; }        
-        public ICommand CallBackCommand
-        {
-            get => callBackCommand;
-            set => SetProperty(ref callBackCommand, value);
-        }
         
+        public AsyncCommand<Location> CallBackAsync
+        {
+            get => callBackAsync;
+            set => SetProperty(ref callBackAsync, value);
+        }
 
         public Location SelectedItem 
         {
             get => selectedItem;
             set => SetProperty(ref selectedItem, value);
         }
-
-
 
         public SearchLocationViewModel()
         {
@@ -65,7 +63,7 @@ namespace Core.ViewModels
 
                 IsBusy = true;
                 await Task.Delay(100);
-                CallBackCommand?.Execute(SelectedItem);
+                await CallBackAsync.ExecuteAsync(SelectedItem);
                 await Navigation.GoToBackAsync();
                 IsBusy = false;
             }

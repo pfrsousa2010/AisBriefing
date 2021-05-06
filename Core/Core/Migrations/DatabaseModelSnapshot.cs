@@ -31,9 +31,6 @@ namespace Core.Migrations
                     b.Property<string>("Period")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SupId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Text")
                         .HasColumnType("TEXT");
 
@@ -91,13 +88,10 @@ namespace Core.Migrations
                     b.Property<string>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("LocationId")
+                    b.Property<Guid>("LocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Message")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NotamId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StartDate")
@@ -110,7 +104,7 @@ namespace Core.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Notam");
+                    b.ToTable("Notams");
                 });
 
             modelBuilder.Entity("Core.Models.Settings", b =>
@@ -144,7 +138,9 @@ namespace Core.Migrations
                 {
                     b.HasOne("Core.Models.Location", "Location")
                         .WithMany("Notams")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

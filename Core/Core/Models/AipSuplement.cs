@@ -7,18 +7,12 @@ namespace Core.Models
     public class AipSuplement : BaseModel
     {
         #region Fields
-        string supId;
         string title;
         string text;
         string period;
         Location location;
         #endregion
 
-        public string SupId
-        {
-            get => supId;
-            set => SetProperty(ref supId, value);
-        }
         public string Title
         {
             get => title;

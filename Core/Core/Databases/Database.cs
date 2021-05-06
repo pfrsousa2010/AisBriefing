@@ -34,9 +34,9 @@ namespace Core.Databases
             
          }
 
-
         public DbSet<Location> Locations { get; set; }
 
+        public DbSet<Notam> Notams { get; set; }
 
         public DbSet<Settings> Settings { get; set; }
 
@@ -75,7 +75,7 @@ namespace Core.Databases
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<ContactGroup>().HasMany(group => group.Contacts).WithOne(contact => contact.Group).HasForeignKey(contact => contact.GroupId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Location>().HasMany(location => location.Notams).WithOne(notam => notam.Location).HasForeignKey(notam => notam.LocationId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

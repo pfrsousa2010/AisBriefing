@@ -1,5 +1,12 @@
 ﻿using Core.Business;
+using Core.Services;
 using Core.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
+using System.Xml.Serialization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,7 +30,8 @@ namespace Core.Views
         {
             await ViewModel.OnRemove((sender as Element).BindingContext as LocationBusiness);
         }
-    }
+
+     }
 
     public class LocationsXaml : BasePage<LocationsViewModel> { }
 }

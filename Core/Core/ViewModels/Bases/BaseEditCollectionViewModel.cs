@@ -90,7 +90,7 @@ namespace Core.ViewModels
                     return;
                 }
 
-                DataManager.Save(SelectedItem.Model);
+                DataManager.SaveAsync(SelectedItem.Model);
                 await Navigation.GoToBackAsync();
 
                 IsBusy = false;

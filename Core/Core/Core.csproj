@@ -23,10 +23,13 @@
   <ItemGroup>
     <Compile Remove="Enums\**" />
     <Compile Remove="ViewModels\Settings\**" />
+    <Compile Remove="Views\Locations\NewFolder\**" />
     <EmbeddedResource Remove="Enums\**" />
     <EmbeddedResource Remove="ViewModels\Settings\**" />
+    <EmbeddedResource Remove="Views\Locations\NewFolder\**" />
     <None Remove="Enums\**" />
     <None Remove="ViewModels\Settings\**" />
+    <None Remove="Views\Locations\NewFolder\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Files\locations.json" />
@@ -101,8 +104,5 @@
     <Compile Update="Views\Settings\EditSettingsPage.xaml.cs">
       <DependentUpon>EditSettingsPage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Locations\NewFolder\" />
   </ItemGroup>
 </Project>

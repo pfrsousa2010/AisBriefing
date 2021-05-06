@@ -15,11 +15,11 @@ namespace Core.Databases
             return GetIncludes(Database.Set<TModel>());
         }
 
-        public virtual void Save(TModel entity)
+        public virtual async Task SaveAsync(TModel entity)
         {
             switch (GetState(entity))
             {
-                case EntityState.Detached: Add(entity); break;
+                case EntityState.Detached: await Add(entity); break;
                 case EntityState.Modified: Update(entity); break;
             }
         }
@@ -39,11 +39,11 @@ namespace Core.Databases
             return Database.Entry(entity).State;
         }
 
-        public virtual void Add(TModel entity)
+        public virtual async Task Add(TModel entity)
         {
             entity.UpdatedAt = DateTimeOffset.Now;
-            Database.Add(entity);
-            Database.SaveChanges();
+            await Database.AddAsync(entity);
+            await Database.SaveChangesAsync();
         }
 
         public virtual void AddRange(IEnumerable<TModel> entities)

@@ -48,6 +48,4 @@ namespace Core.Models
         public List<AipSuplement> AipSuplements { get; set; }        
     }
 
-
-
 }

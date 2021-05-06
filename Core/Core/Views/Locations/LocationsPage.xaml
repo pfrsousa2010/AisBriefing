@@ -5,6 +5,7 @@
                          xmlns:viewmodels="clr-namespace:Core.ViewModels" 
                          xmlns:business="clr-namespace:Core.Business"
                          xmlns:extensions="clr-namespace:Core.Extensions"
+                         xmlns:models="clr-namespace:Core.Models"
                          x:DataType="viewmodels:LocationsViewModel"
                          x:Class="Core.Views.LocationsPage"
                          Title="{extensions:Translate locations}">
@@ -14,6 +15,7 @@
     </views:LocationsXaml.ToolbarItems>
 
     <StackLayout>
+
         <CollectionView ItemsSource="{Binding Items}"
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
@@ -22,7 +24,6 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-
                         <SwipeView x:DataType="business:LocationBusiness">
                             <SwipeView.RightItems>
                                 <SwipeItem BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" 
@@ -35,6 +36,7 @@
 
                                 <Frame Margin="9,3">
                                     <StackLayout>
+                                        
                                         <!--#region Id ICAO -->
                                         <Label Text="{Binding Model.IdIcao, Mode=OneWay}"
                                            TextTransform="Uppercase"
@@ -45,10 +47,21 @@
                                         <Label Text="{Binding Model.Name, Mode=OneWay}" />
                                         <Label Text="{Binding Model.City, Mode=OneWay}" />
                                         <!--#endregion-->
+
+                                        <!--#region Notams -->
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Model.Notams}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout x:DataType="models:Notam">
+                                                        <Label Text="{Binding Message, Mode=OneWay}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                        <!--#endregion-->
+                                        
                                     </StackLayout>
                                 </Frame>
-
-
                             </Grid>
                         </SwipeView>
                     </Grid>

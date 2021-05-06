@@ -1,6 +1,7 @@
 ﻿using Core.Business;
 using Core.Databases;
 using Core.Models;
+using Core.Services;
 using MvvmHelpers.Commands;
 using Newtonsoft.Json;
 using System;
@@ -17,28 +18,25 @@ namespace Core.ViewModels
     public class LocationsViewModel : BaseCollectionViewModel<Location, LocationBusiness, LocationsManager>
     {
         public ICommand SearchCommand { get; }
-        public ICommand AddLocationCommand { get; }
-        
-
+        public AsyncCommand<Location> AddLocationCommand { get; }
 
         public LocationsViewModel()
         {
             SearchCommand = new AsyncCommand(OnSearch);
-            AddLocationCommand = new Command<Location>(OnAddLocation);            
+            AddLocationCommand = new AsyncCommand<Location>(OnAddLocation);            
         }
 
-        private void OnAddLocation(Location location)
+        private async Task OnAddLocation(Location location)
         {
+            await DataManager.SaveAsync(location);
             var businessLocation = new LocationBusiness { Model = location};
             Items.Add(businessLocation);
-            DataManager.Save(location);
-            
         }
 
         private async Task OnSearch()
         {
             var viewModel = await Navigation.GoToAsync<SearchLocationViewModel>();
-            viewModel.CallBackCommand = AddLocationCommand;
+            viewModel.CallBackAsync = AddLocationCommand;
         }
     }
 }

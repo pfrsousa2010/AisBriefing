@@ -15,7 +15,9 @@ namespace Core.Migrations
                     UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
                     Deleted = table.Column<bool>(nullable: false),
                     IdIcao = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +45,6 @@ namespace Core.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
                     Deleted = table.Column<bool>(nullable: false),
-                    SupId = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Text = table.Column<string>(nullable: true),
                     Period = table.Column<string>(nullable: true),
@@ -61,27 +62,26 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notam",
+                name: "Notams",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
                     Deleted = table.Column<bool>(nullable: false),
-                    NotamId = table.Column<string>(nullable: true),
                     StartDate = table.Column<string>(nullable: true),
                     EndDate = table.Column<string>(nullable: true),
                     Message = table.Column<string>(nullable: true),
-                    LocationId = table.Column<Guid>(nullable: true)
+                    LocationId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notam", x => x.Id);
+                    table.PrimaryKey("PK_Notams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Notam_Locations_LocationId",
+                        name: "FK_Notams_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -90,8 +90,8 @@ namespace Core.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notam_LocationId",
-                table: "Notam",
+                name: "IX_Notams_LocationId",
+                table: "Notams",
                 column: "LocationId");
         }
 
@@ -101,7 +101,7 @@ namespace Core.Migrations
                 name: "AipSuplement");
 
             migrationBuilder.DropTable(
-                name: "Notam");
+                name: "Notams");
 
             migrationBuilder.DropTable(
                 name: "Settings");

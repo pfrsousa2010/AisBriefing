@@ -7,18 +7,14 @@ namespace Core.Models
     public class Notam : BaseModel
     {
         #region Fields
-        string notamId;
         string startDate;
         string endDate;
         string message;
+        
         Location location;
+        Guid locationId;
         #endregion
 
-        public string NotamId
-        {
-            get => notamId;
-            set => SetProperty(ref notamId, value);
-        }
         public string StartDate
         {
             get => startDate;
@@ -41,6 +37,12 @@ namespace Core.Models
         {
             get => location;
             set => SetProperty(ref location, value);
+        }
+
+        public Guid LocationId
+        {
+            get => locationId;
+            set => SetProperty(ref locationId, value);
         }
 
     }

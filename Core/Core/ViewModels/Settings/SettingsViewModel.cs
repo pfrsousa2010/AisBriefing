@@ -15,7 +15,7 @@ namespace Core.ViewModels
         public override void OnDisappearing()
         {
             base.OnDisappearing();
-            DataManager.Save(Business.Model);
+            DataManager.SaveAsync(Business.Model);
         }
     }
 }

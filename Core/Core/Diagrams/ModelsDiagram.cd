@@ -15,7 +15,6 @@
     <Members>
       <Field Name="location" Hidden="true" />
       <Field Name="period" Hidden="true" />
-      <Field Name="supId" Hidden="true" />
       <Field Name="text" Hidden="true" />
       <Field Name="title" Hidden="true" />
     </Members>
@@ -23,7 +22,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>CAAAAAAAQAAAAEAAAAIAAAACAAAAAAAIAAAACggAAAI=</HashCode>
+      <HashCode>AAAAAAAAQAAAAEAAAAIAAAACAAAAAAAIAAAACgAAAAI=</HashCode>
       <FileName>Models\AipSuplement.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -49,11 +48,10 @@
       <Field Name="endDate" Hidden="true" />
       <Field Name="location" Hidden="true" />
       <Field Name="message" Hidden="true" />
-      <Field Name="notamId" Hidden="true" />
       <Field Name="startDate" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAACIAAAAiAgAAAAIAAAAAIEAAACA=</HashCode>
+      <HashCode>QAAIAAAACAAAAAAAACIAAAAiAAAAAAAAAAAAIEAAACA=</HashCode>
       <FileName>Models\Notam.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
