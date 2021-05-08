@@ -15,10 +15,11 @@ using System.Windows.Input;
 
 namespace Core.ViewModels
 {
-    public class LocationsViewModel : BaseCollectionViewModel<Location, LocationBusiness, LocationsManager>
+    public class LocationsViewModel : BaseDetailsCollectionViewModel<Location, LocationBusiness,LocationDetailsViewModel, LocationsManager>
     {
         public ICommand SearchCommand { get; }
         public AsyncCommand<Location> AddLocationCommand { get; }
+
 
         public LocationsViewModel()
         {
@@ -26,8 +27,12 @@ namespace Core.ViewModels
             AddLocationCommand = new AsyncCommand<Location>(OnAddLocation);            
         }
 
+
         private async Task OnAddLocation(Location location)
         {
+            if (Items.Any(l => l.Model == location))
+                return;
+
             await DataManager.SaveAsync(location);
             var businessLocation = new LocationBusiness { Model = location};
             Items.Add(businessLocation);

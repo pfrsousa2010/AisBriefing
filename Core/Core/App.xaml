@@ -4,7 +4,7 @@
              x:Class="Core.App">
     <Application.Resources>
         <ResourceDictionary>
-
+            
             <!--Alert colors-->
             <Color x:Key="AlertColor">OrangeRed</Color>
 

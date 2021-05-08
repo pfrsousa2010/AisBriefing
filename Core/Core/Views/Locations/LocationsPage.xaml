@@ -12,6 +12,7 @@
 
     <views:LocationsXaml.ToolbarItems>
         <ToolbarItem Text="{extensions:Translate add}" Command="{Binding SearchCommand}" IconImageSource="{StaticResource Add}"/>
+        <ToolbarItem Text="{extensions:Translate refresh}" Command="{Binding RefreshCommand}" IconImageSource="{StaticResource Refresh}"/>
     </views:LocationsXaml.ToolbarItems>
 
     <StackLayout>
@@ -45,24 +46,7 @@
 
                                         <!--#region Name -->
                                         <Label Text="{Binding Model.Name, Mode=OneWay}" />
-                                        <Label Text="{Binding Model.City, Mode=OneWay}" />
-                                        <!--#endregion-->
-
-                                        <!--#region Notams -->
-                                        <StackLayout BindableLayout.ItemsSource="{Binding Model.Notams}">
-                                            <BindableLayout.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Frame>
-                                                        <StackLayout x:DataType="models:Notam">
-                                                            <Label Text="{Binding Message, Mode=OneWay}"/>
-                                                            <Label Text="{Binding StartDate, Mode=OneWay}"/>
-                                                            <Label Text="{Binding EndDate, Mode=OneWay}"/>
-                                                        </StackLayout>
-                                                    </Frame>                                                    
-                                                </DataTemplate>
-                                            </BindableLayout.ItemTemplate>
-                                        </StackLayout>
-                                        <!--#endregion-->
+                                        <Label Text="{Binding Model.City, Mode=OneWay}" />                                      
                                         
                                     </StackLayout>
                                 </Frame>

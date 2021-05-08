@@ -49,7 +49,8 @@ namespace Core.ViewModels
 
                 IsBusy = true;
                 await Task.Delay(100);
-                DataManager.UpdateRange(Items.Select(s => s.Model));
+                var models = Items.Select(s => s.Model).ToList();
+                await DataManager.RefreshRange(models);
                 IsBusy = false;
             }
             catch (Exception exception)

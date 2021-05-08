@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:LocationDetailsXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:views="clr-namespace:Core.Views"
+                          xmlns:viewModels="clr-namespace:Core.ViewModels"
+                          xmlns:models="clr-namespace:Core.Models"
+                          xmlns:business="clr-namespace:Core.Business"
+                          xmlns:extensions="clr-namespace:Core.Extensions"
+                          x:DataType="viewModels:LocationDetailsViewModel"
+                          x:Class="Core.Views.LocationDetailsPage"
+                          Title="{Binding Business.Model.IdIcao}">
+
+    
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Margin="24" Spacing="12">
+            <!--#region Name -->
+            <Label Text="{Binding Business.Model.Name, Mode=OneWay}"
+               Style="{StaticResource TitleStyle}"
+               LineBreakMode="WordWrap"/>
+            <!--#endregion-->
+
+            <StackLayout BindableLayout.ItemsSource="{Binding NotamsBusiness}"
+                         VerticalOptions="FillAndExpand">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout x:DataType="business:NotamBusiness">
+                            <Label Text="{Binding Model.NotamId, Mode=OneWay}"/>
+                            <Label Text="{Binding Model.Message, Mode=OneWay}"
+                                   LineHeight="1.25"/>
+                            <Label Text="{Binding Start, Mode=OneWay, StringFormat='{0:dd/MM/yyyy HH:mm}'}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+
+</views:LocationDetailsXaml>

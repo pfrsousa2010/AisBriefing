@@ -14,6 +14,7 @@ namespace Core
             
              
             Routing.RegisterRoute(nameof(SearchLocationViewModel), typeof(SearchLocationPage));
+            Routing.RegisterRoute(nameof(LocationDetailsViewModel), typeof(LocationDetailsPage));
 
         }
     }

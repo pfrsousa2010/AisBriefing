@@ -14,7 +14,7 @@ namespace Core.Navigations
 
         public Task GoToBackAsync()
         {
-            return Shell.Current.GoToAsync("..");
+            return Shell.Current.GoToAsync(".."); //volta tela anterior Doc.Shell
 
         }
     }

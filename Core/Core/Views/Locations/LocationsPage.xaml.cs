@@ -17,7 +17,7 @@ namespace Core.Views
     {
         public LocationsPage()
         {
-            Initialize();
+            Initialize();            
         }
 
         protected override void Initialize()

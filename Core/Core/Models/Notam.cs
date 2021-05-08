@@ -10,11 +10,12 @@ namespace Core.Models
         string startDate;
         string endDate;
         string message;
+        string notamid;
         
         Location location;
         Guid locationId;
-        #endregion
-
+        #endregion      
+       
         public string StartDate
         {
             get => startDate;
@@ -32,6 +33,11 @@ namespace Core.Models
             get => message;
             set => SetProperty(ref message, value);
         }
+        public string NotamId
+        {
+            get => notamid;
+            set => SetProperty(ref notamid, value);
+        }
 
         public Location Location
         {
@@ -43,7 +49,7 @@ namespace Core.Models
         {
             get => locationId;
             set => SetProperty(ref locationId, value);
-        }
+        }       
 
     }
 }

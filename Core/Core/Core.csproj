@@ -85,6 +85,9 @@
     <EmbeddedResource Update="Views\Countries\CountriesSelectPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Locations\LocationDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\Resources.Designer.cs">
@@ -94,6 +97,9 @@
     </Compile>
     <Compile Update="Views\Contacts\ContactDetailsPage.xaml.cs">
       <DependentUpon>ContactDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Locations\LocationDetailsPage.xaml.cs">
+      <DependentUpon>LocationDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Locations\SearchLocationPage.xaml.cs">
       <DependentUpon>SearchLocationPage.xaml</DependentUpon>
