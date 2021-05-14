@@ -21,52 +21,11 @@ namespace Core.ViewModels
         public ICommand SearchCommand { get; }
         public AsyncCommand<Location> AddLocationCommand { get; }
 
-        protected override async Task OnLoad()
-        {
-            try
-            {
-                if (IsBusy)
-                    return;
-
-
-                IsBusy = true;
-                await Task.Delay(100);
-
-                if (Items.Count == 0)
-                {
-                    var models =  DataManager.GetAll();
-
-                    if (models.Count() > 0)
-                    {
-                        var newItems = new List<LocationBusiness>();
-
-                        foreach (var model in models)
-                            newItems.Add(new LocationBusiness { Model = model });
-
-                        Items.ReplaceRange(newItems);
-                    }
-                }
-                else
-                {
-                    Items.Clear();
-                }
-
-                IsBusy = false;
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                IsBusy = false;
-            }
-        }
-
         public LocationsViewModel()
         {
             SearchCommand = new AsyncCommand(OnSearch);
             AddLocationCommand = new AsyncCommand<Location>(OnAddLocation);            
         }
-
 
         private async Task OnAddLocation(Location location)
         {

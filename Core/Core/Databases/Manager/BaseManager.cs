@@ -10,9 +10,13 @@ namespace Core.Databases
     {
         protected Database Database => Database.Instance;
 
-        public virtual IQueryable<TModel> GetAll()
+        public virtual Task<IQueryable<TModel>> GetAll()
         {
-            return GetIncludes(Database.Set<TModel>());
+            return Task.Run(() =>
+            {
+                return GetIncludes(Database.Set<TModel>());
+            });
+
         }
 
         public virtual async Task SaveAsync(TModel entity)

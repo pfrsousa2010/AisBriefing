@@ -3,6 +3,7 @@ using Core.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,12 @@ namespace Core.Databases
         {
             return entities.Include(Location => Location.Notams);
         }
-        
-        public async Task<IQueryable<Location>> SyncLocationsAsync()
+
+        public override async Task<IQueryable<Location>> GetAll()
         {
-            var entities = GetIncludes(Database.Locations);
-
-            if(entities.Count() > 0)
-            {
-                await RefreshRange(entities.ToList());
-            }
-
-            return entities;
+            var locations = await base.GetAll();
+            await RefreshRange(locations.ToList());
+            return locations;
         }
 
         public override async Task Add(Location entity)
@@ -38,7 +34,6 @@ namespace Core.Databases
                 await base.Add(entity);
                 return;
             }
-
 
             var aisWebService = new AisWebService();
             var notams = await aisWebService.GetNotams(entity.IdIcao);
@@ -54,7 +49,6 @@ namespace Core.Databases
                 entity.Notams = new List<Models.Notam>();
             }
                 
-
             foreach (var item in notams)
             {
                 
@@ -76,47 +70,59 @@ namespace Core.Databases
 
         public override async Task RefreshRange(List<Location> entities)
         {
-            var conectivity = Xamarin.Essentials.Connectivity.NetworkAccess;
-
-            if (conectivity != Xamarin.Essentials.NetworkAccess.Internet)
+            try
             {
-                return;
-            }
+                var conectivity = Xamarin.Essentials.Connectivity.NetworkAccess;
 
-            var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
-            var locationIds = entities.Select(s => s.Id);
-
-            var oldNotams = Database.Notams.Where(s => locationIds.Contains(s.LocationId));
-            Database.RemoveRange(oldNotams);
-            Database.SaveChanges();
-
-
-            var aisWebService = new AisWebService();
-            var notams = await aisWebService.GetNotams(icaoIds);
-
-            if (notams == null || notams.Count == 0)
-            {
-                return;
-            }
-
-            foreach (var item in notams)
-            {
-                foreach (var notam in item.Items)
+                if (conectivity != Xamarin.Essentials.NetworkAccess.Internet ||
+                    entities.Count == 0)
                 {
-                    var location = entities.Where(l => l.IdIcao == notam.Icao).FirstOrDefault();
-
-                    location.Notams.Add(new Models.Notam
-                    {
-                        NotamId = notam.IdNotam,
-                        Message = notam.Text,
-                        StartDate = notam.StDate,
-                        EndDate = notam.EdDate
-                    });
-
-                    Database.Update(location);
+                    return;
                 }
+
+                var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
+                var locationIds = entities.Select(s => s.Id);
+
+                var oldNotams = Database.Notams.Where(s => locationIds.Contains(s.LocationId));
+                Database.RemoveRange(oldNotams);
+                Database.SaveChanges();
+
+                var aisWebService = new AisWebService();
+                var notams = await aisWebService.GetNotams(icaoIds);
+
+                if (notams == null || notams.Count == 0)
+                {
+                    return;
+                }
+
+                foreach (var item in notams)
+                {
+                    foreach (var notam in item.Items)
+                    {
+                        var location = entities.Where(l => l.IdIcao == notam.Icao).FirstOrDefault();
+
+                        var newNotam =new Models.Notam
+                        {
+                            NotamId = notam.IdNotam,
+                            Message = notam.Text,
+                            StartDate = notam.StDate,
+                            EndDate = notam.EdDate,
+                            Location = location
+                        };
+
+                        Database.Add(newNotam);
+                    }
+                }
+
+                Database.SaveChanges();
             }
-            Database.SaveChanges();       
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+
+                   
         }
     }
 }

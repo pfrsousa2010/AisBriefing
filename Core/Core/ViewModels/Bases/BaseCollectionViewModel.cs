@@ -92,7 +92,7 @@ namespace Core.ViewModels
 
                 if (Items.Count == 0)
                 {
-                    var models = DataManager.GetAll();
+                    var models = await DataManager.GetAll();
 
                     if (models.Count() > 0)
                     {
