@@ -11,24 +11,49 @@ namespace Core.Databases
 {
     public class LocationsManager : BaseManager<Location>
     {
-        //Load the Notams added by location
+        //Load the Notams added by location on starting
         public override IQueryable<Location> GetIncludes(IQueryable<Location> entities)
         {
             return entities.Include(Location => Location.Notams);
         }
+        
+        public async Task<IQueryable<Location>> SyncLocationsAsync()
+        {
+            var entities = GetIncludes(Database.Locations);
+
+            if(entities.Count() > 0)
+            {
+                await RefreshRange(entities.ToList());
+            }
+
+            return entities;
+        }
+
         public override async Task Add(Location entity)
         {
-            var aisWebService = new AisWebService();
-            var notams = await aisWebService.GetNotams(entity.IdIcao);
+            var conectivity = Xamarin.Essentials.Connectivity.NetworkAccess;
 
-            if (notams == null || notams.Count == 0)
+            if (conectivity != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 await base.Add(entity);
                 return;
             }
 
+
+            var aisWebService = new AisWebService();
+            var notams = await aisWebService.GetNotams(entity.IdIcao);
+
+            if (notams == null || notams.Count == 0)
+            {
+                await base.Add(entity);                
+                return;
+            }
+
             if (entity.Notams == null)
+            {
                 entity.Notams = new List<Models.Notam>();
+            }
+                
 
             foreach (var item in notams)
             {
@@ -51,16 +76,20 @@ namespace Core.Databases
 
         public override async Task RefreshRange(List<Location> entities)
         {
+            var conectivity = Xamarin.Essentials.Connectivity.NetworkAccess;
 
-            foreach (var location in entities)
+            if (conectivity != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Database.RemoveRange(location.Notams);
+                return;
             }
 
+            var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
+            var locationIds = entities.Select(s => s.Id);
+
+            var oldNotams = Database.Notams.Where(s => locationIds.Contains(s.LocationId));
+            Database.RemoveRange(oldNotams);
             Database.SaveChanges();
 
-
-            var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
 
             var aisWebService = new AisWebService();
             var notams = await aisWebService.GetNotams(icaoIds);
@@ -72,7 +101,6 @@ namespace Core.Databases
 
             foreach (var item in notams)
             {
-
                 foreach (var notam in item.Items)
                 {
                     var location = entities.Where(l => l.IdIcao == notam.Icao).FirstOrDefault();
@@ -88,8 +116,7 @@ namespace Core.Databases
                     Database.Update(location);
                 }
             }
-            
-            Database.SaveChanges();
+            Database.SaveChanges();       
         }
     }
 }

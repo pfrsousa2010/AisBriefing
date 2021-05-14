@@ -11,8 +11,8 @@
 
     <Shell.SearchHandler>
         <SearchHandler  Command="{Binding SearchCommand, Mode=OneWay}" 
-                        Query="{Binding Text, Mode=TwoWay}">
-        </SearchHandler>
+                        Query="{Binding Text, Mode=TwoWay}"
+                        Placeholder="ICAO, City or Name"/>
     </Shell.SearchHandler>
 
     <StackLayout>
@@ -22,29 +22,23 @@
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                     SelectionChangedCommand="{Binding SelectedCommand}"
                     Margin="0,12">
-                <CollectionView.EmptyView>
-                    <Label Text="Search for the Icao, City or Name of the airport."
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           HorizontalTextAlignment="Center"/>
-                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Location">
-                        <!--content-->
-                        <Frame Margin="9,3">
-                            <StackLayout>
-                                <!--#region Id ICAO -->
-                                <Label Text="{Binding IdIcao, Mode=OneWay}"
+                        <Grid>
+                            <Frame Margin="9,3" HasShadow="True">
+                                <StackLayout>
+                                    <!--#region Id ICAO -->
+                                    <Label Text="{Binding IdIcao, Mode=OneWay}"
                                            TextTransform="Uppercase"
                                            Style="{StaticResource TitleStyle}"/>
-                                <!--#endregion-->
-
-                                <!--#region Name -->
-                                <Label Text="{Binding Name, Mode=OneWay}" />
-                                <Label Text="{Binding City, Mode=OneWay}" />
-                                <!--#endregion-->
-                            </StackLayout>
-                        </Frame>
+                                    <!--#endregion-->
+                                    <!--#region Name and City -->
+                                    <Label Text="{Binding Name, Mode=OneWay}" />
+                                    <Label Text="{Binding City, Mode=OneWay}" />
+                                    <!--#endregion-->
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

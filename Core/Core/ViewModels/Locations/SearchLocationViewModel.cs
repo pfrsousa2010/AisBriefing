@@ -98,7 +98,7 @@ namespace Core.ViewModels
                 s.Name.ToUpper().Contains(Text.ToUpper().Trim()) ||
                 s.IdIcao == Text.ToUpper().Trim())
                 ).Take(100));
-            }  
+            }
         }
     }
 }

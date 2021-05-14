@@ -123,6 +123,9 @@
   <data name="cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="city" xml:space="preserve">
+    <value>City</value>
+  </data>
   <data name="clients" xml:space="preserve">
     <value>Clients</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="end" xml:space="preserve">
+    <value>End</value>
   </data>
   <data name="family" xml:space="preserve">
     <value>Family</value>
@@ -159,8 +165,14 @@
   <data name="name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="no-notam-was-found" xml:space="preserve">
+    <value>No NOTAM was found</value>
+  </data>
   <data name="note" xml:space="preserve">
     <value>Note</value>
+  </data>
+  <data name="permanent" xml:space="preserve">
+    <value>Permanent</value>
   </data>
   <data name="phone" xml:space="preserve">
     <value>Phone</value>
@@ -182,6 +194,9 @@
   </data>
   <data name="social-media" xml:space="preserve">
     <value>Social Media</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="theme" xml:space="preserve">
     <value>Theme</value>

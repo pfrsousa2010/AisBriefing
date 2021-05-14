@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -17,7 +18,7 @@ namespace Core.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            var dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "core.sqlite");
+            var dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "aisbriefing.sqlite");
             LoadApplication(new App(dbPath));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

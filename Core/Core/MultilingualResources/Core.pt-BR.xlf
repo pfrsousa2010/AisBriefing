@@ -102,6 +102,26 @@
           <source>Search location</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Local de pesquisa</target>
         </trans-unit>
+        <trans-unit id="city" translate="yes" xml:space="preserve">
+          <source>City</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Cidade</target>
+        </trans-unit>
+        <trans-unit id="end" translate="yes" xml:space="preserve">
+          <source>End</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Fim</target>
+        </trans-unit>
+        <trans-unit id="start" translate="yes" xml:space="preserve">
+          <source>Start</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Iniciar</target>
+        </trans-unit>
+        <trans-unit id="permanent" translate="yes" xml:space="preserve">
+          <source>Permanent</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Permanente</target>
+        </trans-unit>
+        <trans-unit id="no-notam-was-found" translate="yes" xml:space="preserve">
+          <source>No NOTAM was found</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nenhum NOTAM foi encontrado</target>
+        </trans-unit>
       </group>
     </body>
   </file>

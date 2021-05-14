@@ -16,7 +16,7 @@
 
             <!-- Dark colors -->
             <Color x:Key="BackgroundColorDark">Black</Color>
-            <Color x:Key="TextColorDark">Gray</Color>
+            <Color x:Key="TextColorDark">WhiteSmoke</Color>
             <Color x:Key="TitleColorDark">White</Color>
             <Color x:Key="BorderColorDark">DarkSlateGray</Color>
             

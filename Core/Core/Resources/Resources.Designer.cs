@@ -79,6 +79,15 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        internal static string city {
+            get {
+                return ResourceManager.GetString("city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clients.
         /// </summary>
         internal static string clients {
@@ -129,6 +138,15 @@ namespace Core.Resources {
         internal static string email {
             get {
                 return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End.
+        /// </summary>
+        internal static string end {
+            get {
+                return ResourceManager.GetString("end", resourceCulture);
             }
         }
         
@@ -187,11 +205,29 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No NOTAM was found.
+        /// </summary>
+        internal static string no_notam_was_found {
+            get {
+                return ResourceManager.GetString("no-notam-was-found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         internal static string note {
             get {
                 return ResourceManager.GetString("note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permanent.
+        /// </summary>
+        internal static string permanent {
+            get {
+                return ResourceManager.GetString("permanent", resourceCulture);
             }
         }
         
@@ -255,6 +291,15 @@ namespace Core.Resources {
         internal static string social_media {
             get {
                 return ResourceManager.GetString("social-media", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string start {
+            get {
+                return ResourceManager.GetString("start", resourceCulture);
             }
         }
         

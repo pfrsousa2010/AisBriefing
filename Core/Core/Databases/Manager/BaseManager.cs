@@ -43,7 +43,7 @@ namespace Core.Databases
         {
             entity.UpdatedAt = DateTimeOffset.Now;
             await Database.AddAsync(entity);
-            await Database.SaveChangesAsync();
+            await Database.SaveChangesAsync();            
         }
 
         public virtual void AddRange(IEnumerable<TModel> entities)
@@ -53,6 +53,7 @@ namespace Core.Databases
 
             Database.AddRange(entities);
             Database.SaveChanges();
+            
         }
 
         public virtual void Update(TModel entity)
@@ -81,6 +82,7 @@ namespace Core.Databases
         {
             Database.RemoveRange(entities);
             Database.SaveChanges();
+            
         }
 
         public virtual Task Refresh(TModel entity) => null;

@@ -15,9 +15,7 @@ namespace Core.ViewModels
 
         public LocationDetailsViewModel()
         {
-            NotamsBusiness = new ObservableRangeCollection<NotamBusiness>();
-            
-            
+            NotamsBusiness = new ObservableRangeCollection<NotamBusiness>();                     
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")

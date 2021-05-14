@@ -1,4 +1,5 @@
-﻿using Core.ViewModels;
+﻿using Core.Databases;
+using Core.ViewModels;
 using Xamarin.Forms.Xaml;
 
 namespace Core.Views
@@ -19,4 +20,5 @@ namespace Core.Views
     }
 
     public class LocationDetailsXaml : BasePage<LocationDetailsViewModel> { }
+    
 }

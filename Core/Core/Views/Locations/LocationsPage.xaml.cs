@@ -1,4 +1,6 @@
 ﻿using Core.Business;
+using Core.Databases;
+using Core.Models;
 using Core.Services;
 using Core.ViewModels;
 using System;
@@ -30,8 +32,7 @@ namespace Core.Views
         {
             await ViewModel.OnRemove((sender as Element).BindingContext as LocationBusiness);
         }
-
-     }
+    }
 
     public class LocationsXaml : BasePage<LocationsViewModel> { }
 }
