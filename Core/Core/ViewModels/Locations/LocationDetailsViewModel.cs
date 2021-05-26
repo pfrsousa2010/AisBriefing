@@ -12,10 +12,12 @@ namespace Core.ViewModels
     public class LocationDetailsViewModel : BaseItemDetailsViewModel<Location, LocationBusiness, LocationsManager>
     {
         public ObservableRangeCollection<NotamBusiness> NotamsBusiness { get; }
+        public ObservableRangeCollection<AipSuplementBusiness> AipSuplementBusiness { get; }
 
         public LocationDetailsViewModel()
         {
             NotamsBusiness = new ObservableRangeCollection<NotamBusiness>();                     
+            AipSuplementBusiness = new ObservableRangeCollection<AipSuplementBusiness>();
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -24,16 +26,25 @@ namespace Core.ViewModels
 
             if (propertyName == nameof(Business))
             {
-   
-                foreach(var notam in Business.Model.Notams)
+
+                foreach (var notam in Business.Model.Notams)
                 {
-                    NotamsBusiness.Add(new NotamBusiness {
+                    NotamsBusiness.Add(new NotamBusiness
+                    {
                         Model = notam
                     });
 
                 }
+
+                foreach (var aipSuplement in Business.Model.AipSuplements)
+                {
+                    AipSuplementBusiness.Add(new AipSuplementBusiness
+                    {
+                        Model = aipSuplement
+                    });
+                }
             }
-            
+
         }
     }
 }

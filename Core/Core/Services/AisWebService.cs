@@ -45,5 +45,42 @@ namespace Core.Services
                 return null;
             }
         }
+
+        public async Task<List<AipSuplementCollection>> GetAipSuplements(string icaos)
+        {
+            try
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri($"https://aisweb.decea.mil.br/api/?apiKey=1948175746&apiPass=cba6ae56-a1dd-11ea-9f40-00505680c1b4&area=suplementos&icaocode={icaos}"),
+                };
+
+                var response = await client.SendAsync(request);
+                var status = response.EnsureSuccessStatusCode();
+                List<AipSuplementCollection> result = null;
+
+                if (status.IsSuccessStatusCode)
+                {
+                    var stream = await response.Content.ReadAsStreamAsync();
+                    var reader = new StreamReader(stream);
+                    var serializer = new XmlSerializer(typeof(AisWeb));
+                    var aisweb = (AisWeb)serializer.Deserialize(reader);
+                    result = aisweb?.AipSuplements;
+                }
+
+                response.Dispose();
+                client.Dispose();
+                return result;
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return null;
+            }
+        }
+
     }
 }

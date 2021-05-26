@@ -39,26 +39,27 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AipSuplement",
+                name: "AipSuplements",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
                     Deleted = table.Column<bool>(nullable: false),
+                    Serie = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Text = table.Column<string>(nullable: true),
                     Period = table.Column<string>(nullable: true),
-                    LocationId = table.Column<Guid>(nullable: true)
+                    LocationId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AipSuplement", x => x.Id);
+                    table.PrimaryKey("PK_AipSuplements", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AipSuplement_Locations_LocationId",
+                        name: "FK_AipSuplements_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +72,7 @@ namespace Core.Migrations
                     StartDate = table.Column<string>(nullable: true),
                     EndDate = table.Column<string>(nullable: true),
                     Message = table.Column<string>(nullable: true),
+                    NotamId = table.Column<string>(nullable: true),
                     LocationId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -85,8 +87,8 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AipSuplement_LocationId",
-                table: "AipSuplement",
+                name: "IX_AipSuplements_LocationId",
+                table: "AipSuplements",
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
@@ -98,7 +100,7 @@ namespace Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AipSuplement");
+                name: "AipSuplements");
 
             migrationBuilder.DropTable(
                 name: "Notams");

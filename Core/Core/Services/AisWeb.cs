@@ -8,6 +8,9 @@ namespace Core.Services
     {
         [XmlElement("notam")]
         public List<NotamCollection> Notams { get; set; }
+
+        [XmlElement("suplementos")]
+        public List<AipSuplementCollection> AipSuplements { get; set; }
     }
 
 }

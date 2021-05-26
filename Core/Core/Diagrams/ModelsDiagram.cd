@@ -14,7 +14,9 @@
     <Position X="3" Y="0.75" Width="1.5" />
     <Members>
       <Field Name="location" Hidden="true" />
+      <Field Name="locationId" Hidden="true" />
       <Field Name="period" Hidden="true" />
+      <Field Name="serie" Hidden="true" />
       <Field Name="text" Hidden="true" />
       <Field Name="title" Hidden="true" />
     </Members>
@@ -22,7 +24,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAEAAAAIAAAACAAAAAAAIAAAACgAAAAI=</HashCode>
+      <HashCode>AAAIAQAASAAAAEAAAAIAAAACAAAAAAAIAAAACgAAAAM=</HashCode>
       <FileName>Models\AipSuplement.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -45,13 +47,18 @@
   <Class Name="Core.Models.Notam">
     <Position X="3" Y="3" Width="1.5" />
     <Members>
+      <Field Name="end" Hidden="true" />
       <Field Name="endDate" Hidden="true" />
       <Field Name="location" Hidden="true" />
+      <Field Name="locationId" Hidden="true" />
       <Field Name="message" Hidden="true" />
+      <Field Name="notamid" Hidden="true" />
+      <Field Name="permanent" Hidden="true" />
+      <Field Name="start" Hidden="true" />
       <Field Name="startDate" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>QAAIAAAACAAAAAAAACIAAAAiAAAAAAAAAAAAIEAAACA=</HashCode>
+      <HashCode>QAIIAAACCCAAAAAgICIQAAAjAgAAAQIAAAAAIEAACCA=</HashCode>
       <FileName>Models\Notam.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

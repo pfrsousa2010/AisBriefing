@@ -165,6 +165,9 @@
   <data name="name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="no-aipsuplement-was-found" xml:space="preserve">
+    <value>No Aip Suplement was found</value>
+  </data>
   <data name="no-notam-was-found" xml:space="preserve">
     <value>No NOTAM was found</value>
   </data>

@@ -27,44 +27,68 @@ namespace Core.Databases
 
         public override async Task Add(Location entity)
         {
+            #region Conectivity Test
             var conectivity = Xamarin.Essentials.Connectivity.NetworkAccess;
 
             if (conectivity != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 await base.Add(entity);
                 return;
-            }
+            } 
+            #endregion
 
             var aisWebService = new AisWebService();
-            var notams = await aisWebService.GetNotams(entity.IdIcao);
+            var notamsAisWeb = await aisWebService.GetNotams(entity.IdIcao);
+            var aipSuplementsAisWeb = await aisWebService.GetAipSuplements(entity.IdIcao);
 
-            if (notams == null || notams.Count == 0)
+            if (notamsAisWeb?.Count > 0)
             {
-                await base.Add(entity);                
-                return;
-            }
-
-            if (entity.Notams == null)
-            {
-                entity.Notams = new List<Models.Notam>();
-            }
-                
-            foreach (var item in notams)
-            {
-                
-                foreach (var notam in item.Items)
+                if (entity.Notams == null)
                 {
-                    
-                    entity.Notams.Add(new Models.Notam
-                    {
-                        NotamId = notam.IdNotam,
-                        Message = notam.Text,
-                        StartDate = notam.StDate,
-                        EndDate = notam.EdDate
-                    });
+                    entity.Notams = new List<Models.Notam>();
                 }
-                
+
+                foreach (var item in notamsAisWeb)
+                {
+
+                    foreach (var notam in item.Items)
+                    {
+
+                        entity.Notams.Add(new Models.Notam
+                        {
+                            NotamId = notam.IdNotam,
+                            Message = notam.Text,
+                            StartDate = notam.StDate,
+                            EndDate = notam.EdDate
+                        });
+                    }
+
+                } 
             }
+
+            if (aipSuplementsAisWeb?.Count > 0)
+            {
+                if (entity.AipSuplements == null)
+                {
+                    entity.AipSuplements = new List<Models.AipSuplement>();
+                }
+
+                foreach (var item in aipSuplementsAisWeb)
+                {
+                    foreach (var aipSuplement in item.Items)
+                    {
+                        entity.AipSuplements.Add(new Models.AipSuplement
+                        {
+                            Serie = aipSuplement.SerieSup,
+                            Title = aipSuplement.TitleSup,
+                            Text = aipSuplement.TextSup,
+                            Period = aipSuplement.PeriodSup
+                        });
+                    }
+                }
+
+            }
+
             await base.Add(entity);
         }
 
@@ -72,13 +96,15 @@ namespace Core.Databases
         {
             try
             {
+                #region Conectivity Test
                 var conectivity = Xamarin.Essentials.Connectivity.NetworkAccess;
 
                 if (conectivity != Xamarin.Essentials.NetworkAccess.Internet ||
                     entities.Count == 0)
                 {
                     return;
-                }
+                } 
+                #endregion
 
                 var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
                 var locationIds = entities.Select(s => s.Id);
@@ -89,6 +115,7 @@ namespace Core.Databases
 
                 var aisWebService = new AisWebService();
                 var notams = await aisWebService.GetNotams(icaoIds);
+                //var aipSuplement = await aisWebService.GetAipSuplements(icaoIds);
 
                 if (notams == null || notams.Count == 0)
                 {

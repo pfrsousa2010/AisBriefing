@@ -205,6 +205,15 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Aip Suplement was found.
+        /// </summary>
+        internal static string no_aipsuplement_was_found {
+            get {
+                return ResourceManager.GetString("no-aipsuplement-was-found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No NOTAM was found.
         /// </summary>
         internal static string no_notam_was_found {

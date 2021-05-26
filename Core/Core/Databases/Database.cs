@@ -36,7 +36,8 @@ namespace Core.Databases
 
         public DbSet<Location> Locations { get; set; }
 
-        public DbSet<Notam> Notams { get; set; } // criar supaip aqui tbm igual
+        public DbSet<Notam> Notams { get; set; }
+        public DbSet<AipSuplement> AipSuplements { get; set; }
 
         public DbSet<Settings> Settings { get; set; }
 
@@ -46,8 +47,7 @@ namespace Core.Databases
         // contrutor used to build migration on project time
         public Database(string path) : base()
         {
-            this.path = path;
-           
+            this.path = path;           
         }
 
         public void Initialize()
@@ -76,7 +76,7 @@ namespace Core.Databases
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Comportamento em cascata
         {
             modelBuilder.Entity<Location>().HasMany(location => location.Notams).WithOne(notam => notam.Location).HasForeignKey(notam => notam.LocationId).OnDelete(DeleteBehavior.Cascade);
-            // criar supaip aqui tbm igual
+            modelBuilder.Entity<Location>().HasMany(location => location.AipSuplements).WithOne(aipSuplement => aipSuplement.Location).HasForeignKey(aipSuplement => aipSuplement.LocationId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

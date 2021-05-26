@@ -122,6 +122,10 @@
           <source>No NOTAM was found</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Nenhum NOTAM foi encontrado</target>
         </trans-unit>
+        <trans-unit id="no-aipsuplement-was-found" translate="yes" xml:space="preserve">
+          <source>No Aip Suplement was found</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nenhum Aip Suplement foi encontrado</target>
+        </trans-unit>
       </group>
     </body>
   </file>

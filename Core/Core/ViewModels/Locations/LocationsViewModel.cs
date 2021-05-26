@@ -29,7 +29,7 @@ namespace Core.ViewModels
 
         private async Task OnAddLocation(Location location)
         {
-            if (Items.Any(l => l.Model == location))
+            if (Items.Any(l => l.Model.IdIcao == location.IdIcao))
                 return;
 
             await DataManager.SaveAsync(location);

@@ -25,10 +25,13 @@ namespace Core.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("LocationId")
+                    b.Property<Guid>("LocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Period")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Serie")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
@@ -44,7 +47,7 @@ namespace Core.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("AipSuplement");
+                    b.ToTable("AipSuplements");
                 });
 
             modelBuilder.Entity("Core.Models.Location", b =>
@@ -134,7 +137,9 @@ namespace Core.Migrations
                 {
                     b.HasOne("Core.Models.Location", "Location")
                         .WithMany("AipSuplements")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Models.Notam", b =>

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20210506003543_Initial")]
+    [Migration("20210520003251_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,13 @@ namespace Core.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("LocationId")
+                    b.Property<Guid>("LocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Period")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Serie")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
@@ -46,7 +49,7 @@ namespace Core.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("AipSuplement");
+                    b.ToTable("AipSuplements");
                 });
 
             modelBuilder.Entity("Core.Models.Location", b =>
@@ -96,6 +99,9 @@ namespace Core.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("NotamId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("StartDate")
                         .HasColumnType("TEXT");
 
@@ -133,7 +139,9 @@ namespace Core.Migrations
                 {
                     b.HasOne("Core.Models.Location", "Location")
                         .WithMany("AipSuplements")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Models.Notam", b =>

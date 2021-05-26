@@ -99,4 +99,7 @@
   <data name="no-notam-was-found" xml:space="preserve">
     <value>Nenhum NOTAM foi encontrado</value>
   </data>
+  <data name="no-aipsuplement-was-found" xml:space="preserve">
+    <value>Nenhum Aip Suplement foi encontrado</value>
+  </data>
 </root>
