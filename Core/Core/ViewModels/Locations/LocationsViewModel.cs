@@ -42,5 +42,12 @@ namespace Core.ViewModels
             var viewModel = await Navigation.GoToAsync<SearchLocationViewModel>();
             viewModel.CallBackAsync = AddLocationCommand;
         }
+
+        public override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await Task.Delay(2000);
+            _= OnRefresh();
+        }
     }
 }

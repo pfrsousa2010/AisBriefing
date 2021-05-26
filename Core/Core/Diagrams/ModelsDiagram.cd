@@ -58,7 +58,7 @@
       <Field Name="startDate" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>QAIIAAACCCAAAAAgICIQAAAjAgAAAQIAAAAAIEAACCA=</HashCode>
+      <HashCode>QAAIAAACCAAAAAAgACIAAAAjAgAAAQIAAAAAIEAAACA=</HashCode>
       <FileName>Models\Notam.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

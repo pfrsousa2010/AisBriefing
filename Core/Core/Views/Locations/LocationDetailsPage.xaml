@@ -12,82 +12,68 @@
                           x:Class="Core.Views.LocationDetailsPage"
                           Title="{Binding Business.Model.IdIcao}">
 
-    <StackLayout>
-        <CollectionView ItemsSource="{Binding NotamsBusiness}" Margin="5,10,5,5">
-            <CollectionView.EmptyView>
-                <Label Text="{extensions:Translate no-notam-was-found}"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           HorizontalTextAlignment="Center"/>
-            </CollectionView.EmptyView>
-            <CollectionView.ItemTemplate >
-                <DataTemplate>
-                    <StackLayout Margin="3">
-                        <Frame HasShadow="True">
-                            <StackLayout x:DataType="business:NotamBusiness">
-                                <Label Text="{Binding Model.NotamId, Mode=OneWay, StringFormat='NOTAM: {0}'}"/>
-                                <BoxView Color="Gray" HeightRequest="2"/>
-                                <Label Text="{Binding Model.Message, Mode=OneWay}"
+    <ScrollView>
+        <StackLayout>
+            <!--Notams-->
+            <StackLayout BackgroundColor="Transparent" 
+                         BindableLayout.ItemsSource="{Binding NotamsBusiness, Mode=OneWay}" Margin="5,10,5,5">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="3">
+                            <Frame HasShadow="True">
+                                <StackLayout x:DataType="business:NotamBusiness">
+                                    <Label Text="{Binding Model.NotamId, Mode=OneWay, StringFormat='NOTAM: {0}'}"/>
+                                    <BoxView Color="Gray" HeightRequest="2"/>
+                                    <Label Text="{Binding Model.Message, Mode=OneWay}"
                                    LineHeight="1.25" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-                                <BoxView Color="Gray" HeightRequest="2"/>
-                                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" RowSpacing="1">
+                                    <BoxView Color="Gray" HeightRequest="2"/>
+                                    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" RowSpacing="1">
 
-                                    <!--#region Start Date-->
-                                    <Label Grid.Row="0" Grid.Column="0" Text="{extensions:Translate start}" HorizontalTextAlignment="Center" FontSize="12"/>
-                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Model.Start, Mode=OneWay, StringFormat='{0:dd/MM/yy HH:mm}'}" 
+                                        <!--#region Start Date-->
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{extensions:Translate start}" HorizontalTextAlignment="Center" FontSize="12"/>
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding Model.Start, Mode=OneWay, StringFormat='{0:dd/MM/yy HH:mm}'}" 
                                                HorizontalTextAlignment="Center" FontSize="12"/>
-                                    <!--#endregion-->
+                                        <!--#endregion-->
 
-                                    <!--#region End Date-->
-                                    <Label Grid.Row="0" Grid.Column="1" Text="{extensions:Translate end}" HorizontalTextAlignment="Center" FontSize="12"/>
-                                    <controls:LabelControl Grid.Row="1"  Grid.Column="1" Text="{Binding Model.End, Mode=OneWay, StringFormat='{0:dd/MM/yyyy HH:mm}'}" 
+                                        <!--#region End Date-->
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{extensions:Translate end}" HorizontalTextAlignment="Center" FontSize="12"/>
+                                        <controls:LabelControl Grid.Row="1"  Grid.Column="1" Text="{Binding Model.End, Mode=OneWay, StringFormat='{0:dd/MM/yyyy HH:mm}'}" 
                                                HorizontalTextAlignment="Center" FontSize="12"/>
-                                    <controls:LabelControl Grid.Row="1"  Grid.Column="1" Text="{Binding Model.Permanent, Mode=OneWay}" 
+                                        <controls:LabelControl Grid.Row="1"  Grid.Column="1" Text="{Binding Model.Permanent, Mode=OneWay}" 
                                                HorizontalTextAlignment="Center" FontSize="12"/>
-                                    <!--#endregion-->
-                                </Grid>
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                        <!--#endregion-->
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
 
-        <CollectionView ItemsSource="{Binding AipSuplementBusiness}" Margin="5,10,5,5">
-            <CollectionView.EmptyView>
-                <Label Text="{extensions:Translate no-aipsuplement-was-found}"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           HorizontalTextAlignment="Center"/>
-            </CollectionView.EmptyView>
-            <CollectionView.ItemTemplate >
-                <DataTemplate>
-                    <StackLayout Margin="3">
-                        <Frame HasShadow="True">
-                            <StackLayout x:DataType="business:AipSuplementBusiness">
-                                <Grid RowDefinitions="*,*">
-                                    <Label Grid.Row="0" Text="{Binding Model.Serie, Mode=OneWay, StringFormat='Serie: {0}'}"/>
-                                    <Label Grid.Row="1" Text="{Binding Model.Title, Mode=OneWay}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                                </Grid>
-                                <BoxView Color="Gray" HeightRequest="2"/>
-                                <Label Text="{Binding Model.Text, Mode=OneWay}"
+            <!--Aip Suplement-->
+            <StackLayout BindableLayout.ItemsSource="{Binding AipSuplementBusiness}" Margin="5,10,5,5">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout BackgroundColor="Transparent" Margin="3">
+                            <Frame HasShadow="True">
+                                <StackLayout x:DataType="business:AipSuplementBusiness">
+                                    <Grid RowDefinitions="*,*">
+                                        <Label Grid.Row="0" Text="{Binding Model.Serie, Mode=OneWay, StringFormat='Serie: {0}'}"/>
+                                        <Label Grid.Row="1" Text="{Binding Model.Title, Mode=OneWay}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                    <BoxView Color="Gray" HeightRequest="2"/>
+                                    <Label Text="{Binding Model.Text, Mode=OneWay}"
                                    LineHeight="1.25" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-                                <BoxView Color="Gray" HeightRequest="2"/>
-                                <Label Text="{Binding Model.Period}"/>
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                    <BoxView Color="Gray" HeightRequest="2"/>
+                                    <Label Text="{Binding Model.Period}"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </StackLayout>
 
-    </StackLayout>
-
-
-
-
-
-
-
+    </ScrollView>
 
 </views:LocationDetailsXaml>

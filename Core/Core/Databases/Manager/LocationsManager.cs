@@ -18,13 +18,6 @@ namespace Core.Databases
             return entities.Include(Location => Location.Notams);
         }
 
-        public override async Task<IQueryable<Location>> GetAll()
-        {
-            var locations = await base.GetAll();
-            await RefreshRange(locations.ToList());
-            return locations;
-        }
-
         public override async Task Add(Location entity)
         {
             #region Conectivity Test
