@@ -156,6 +156,9 @@
   <data name="groups" xml:space="preserve">
     <value>Groups</value>
   </data>
+  <data name="last-updated" xml:space="preserve">
+    <value>Last Updated</value>
+  </data>
   <data name="location" xml:space="preserve">
     <value>Location</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="runway" xml:space="preserve">
+    <value>Runway</value>
   </data>
   <data name="save" xml:space="preserve">
     <value>Save</value>

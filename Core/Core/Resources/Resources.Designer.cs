@@ -178,6 +178,15 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Updated.
+        /// </summary>
+        internal static string last_updated {
+            get {
+                return ResourceManager.GetString("last-updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location.
         /// </summary>
         internal static string location {
@@ -264,6 +273,15 @@ namespace Core.Resources {
         internal static string refresh {
             get {
                 return ResourceManager.GetString("refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Runway.
+        /// </summary>
+        internal static string runway {
+            get {
+                return ResourceManager.GetString("runway", resourceCulture);
             }
         }
         

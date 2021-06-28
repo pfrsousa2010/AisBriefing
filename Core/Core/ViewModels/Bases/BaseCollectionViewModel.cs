@@ -35,7 +35,7 @@ namespace Core.ViewModels
         {
             Items = new ObservableRangeCollection<TBusiness>();
             SelectCommand = new AsyncCommand(OnSelect);
-            RefreshCommand = new AsyncCommand(OnRefresh);
+            RefreshCommand = new AsyncCommand(OnRefresh);            
         }
 
         protected virtual Task OnSelect() { return null; }

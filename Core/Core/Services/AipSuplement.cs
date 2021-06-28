@@ -7,6 +7,8 @@ namespace Core.Services
 {
     public class AipSuplement
     {
+        [XmlElement("local")]
+        public string IcaoSup { get; set; }
         [XmlElement("n")]
         public string SerieSup { get; set; }
         [XmlElement("titulo")]

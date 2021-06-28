@@ -15,8 +15,9 @@
         <ToolbarItem Text="{extensions:Translate refresh}" Command="{Binding RefreshCommand}" IconImageSource="{StaticResource Refresh}"/>
     </views:LocationsXaml.ToolbarItems>
 
-    <StackLayout>
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}">
+    <StackLayout>        
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}">            
+
             <CollectionView ItemsSource="{Binding Items}"
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
@@ -28,8 +29,7 @@
                             <SwipeView x:DataType="business:LocationBusiness">
                                 <SwipeView.RightItems>
                                     <SwipeItem BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" 
-                                           IconImageSource="{StaticResource Remove}"
-                                       Invoked="OnRemove"/>
+                                           IconImageSource="{StaticResource Remove}" Invoked="OnRemove"/>
                                 </SwipeView.RightItems>
 
                                 <!--content-->

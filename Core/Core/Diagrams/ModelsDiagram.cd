@@ -10,8 +10,8 @@
       <FileName>Models\Settings.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Core.Models.AipSuplement">
-    <Position X="3" Y="0.75" Width="1.5" />
+  <Class Name="Core.Models.AipSuplement" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
     <Members>
       <Field Name="location" Hidden="true" />
       <Field Name="locationId" Hidden="true" />
@@ -31,35 +31,117 @@
       <Property Name="Location" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Core.Models.Location">
+  <Class Name="Core.Models.Location" Collapsed="true">
     <Position X="6" Y="2" Width="1.5" />
-    <Members>
-      <Field Name="city" Hidden="true" />
-      <Field Name="country" Hidden="true" />
-      <Field Name="idIcao" Hidden="true" />
-      <Field Name="name" Hidden="true" />
-    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAIIAAACCAQAAAIEAAACACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAIIAAACCAYAAAIEAAACACAAAAAAAAA=</HashCode>
       <FileName>Models\Location.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Core.Models.Notam">
-    <Position X="3" Y="3" Width="1.5" />
+  <Class Name="Core.Models.Notam" Collapsed="true">
+    <Position X="3.5" Y="2.5" Width="1.5" />
     <Members>
-      <Field Name="end" Hidden="true" />
       <Field Name="endDate" Hidden="true" />
       <Field Name="location" Hidden="true" />
       <Field Name="locationId" Hidden="true" />
       <Field Name="message" Hidden="true" />
       <Field Name="notamid" Hidden="true" />
-      <Field Name="permanent" Hidden="true" />
-      <Field Name="start" Hidden="true" />
       <Field Name="startDate" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>QAAIAAACCAAAAAAgACIAAAAjAgAAAQIAAAAAIEAAACA=</HashCode>
+      <HashCode>QAIIAAAACCAAAAAAICIQAAAiAgAAAQIAAAAAIEAACCA=</HashCode>
       <FileName>Models\Notam.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Core.Models.Rotaer" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <Members>
+      <Field Name="category" Hidden="true" />
+      <Field Name="elevationFeet" Hidden="true" />
+      <Field Name="elevationMeters" Hidden="true" />
+      <Field Name="fir" Hidden="true" />
+      <Field Name="latitude" Hidden="true" />
+      <Field Name="location" Hidden="true" />
+      <Field Name="locationId" Hidden="true" />
+      <Field Name="longitude" Hidden="true" />
+      <Field Name="type" Hidden="true" />
+      <Field Name="typeOpr" Hidden="true" />
+      <Field Name="typeUtil" Hidden="true" />
+      <Field Name="utc" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAISAAUCMAABACAgAIIAAACiAgBAQAIgQAIAAAAiAg=</HashCode>
+      <FileName>Models\Rotaer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Core.Models.OrgRotaer" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="name" Hidden="true" />
+      <Field Name="rotaer" Hidden="true" />
+      <Field Name="rotaerId" Hidden="true" />
+      <Field Name="type" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAYAAAAHAAAAAQQAAAAAAAA=</HashCode>
+      <FileName>Models\OrgRotaer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rotaer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Core.Models.Runway" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="rotaer" Hidden="true" />
+      <Field Name="rotaerId" Hidden="true" />
+      <Field Name="rwyIdent" Hidden="true" />
+      <Field Name="rwyLength" Hidden="true" />
+      <Field Name="rwySurface" Hidden="true" />
+      <Field Name="rwyWidth" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAGAECAAAAAAAAAAAAAIAKAACAAAAYAQAAAAAIAA=</HashCode>
+      <FileName>Models\Runway.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rotaer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Core.Models.Metar" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <Members>
+      <Field Name="location" Hidden="true" />
+      <Field Name="locationId" Hidden="true" />
+      <Field Name="messageMetar" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAICAAACAAAAAIAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Metar.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Core.Models.Taf" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <Members>
+      <Field Name="location" Hidden="true" />
+      <Field Name="locationId" Hidden="true" />
+      <Field Name="messageTaf" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAIAAIACAAAAAAAAAIAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Taf.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Location" />

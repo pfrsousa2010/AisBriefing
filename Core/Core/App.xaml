@@ -13,12 +13,14 @@
             <Color x:Key="TextColorLight">DarkSlateGray</Color>
             <Color x:Key="TitleColorLight">Black</Color>
             <Color x:Key="BorderColorLight">WhiteSmoke</Color>
+            <Color x:Key="BoxViewColorLight">LightGray</Color>
 
             <!-- Dark colors -->
             <Color x:Key="BackgroundColorDark">Black</Color>
             <Color x:Key="TextColorDark">WhiteSmoke</Color>
             <Color x:Key="TitleColorDark">White</Color>
             <Color x:Key="BorderColorDark">DarkSlateGray</Color>
+            <Color x:Key="BoxViewColorDark">DarkSlateGray</Color>
             
             <!--Page -->
             <Style TargetType="Page" ApplyToDerivedTypes="True">
@@ -44,6 +46,11 @@
             <Style TargetType="Label" x:Key="TitleStyle">
                 <Setter Property="FontSize" Value="Title"/>
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TitleColorDark}, Light={StaticResource TitleColorLight}}"/>
+            </Style>
+
+            <!--BoxView-->
+            <Style TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BoxViewColorDark}, Light={StaticResource BoxViewColorLight}}"/>
             </Style>
             
             <!--Entries-->

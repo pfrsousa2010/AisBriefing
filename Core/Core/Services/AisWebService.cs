@@ -82,5 +82,77 @@ namespace Core.Services
             }
         }
 
+        public async Task<RotaerAisWeb> GetRotaer(string icaos)
+        {
+            try
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri($"https://aisweb.decea.mil.br/api/?apiKey=1948175746&apiPass=cba6ae56-a1dd-11ea-9f40-00505680c1b4&area=rotaer&icaocode={icaos}"),
+                };
+
+                var response = await client.SendAsync(request);
+                var status = response.EnsureSuccessStatusCode();
+                RotaerAisWeb result = null;
+
+                if (status.IsSuccessStatusCode)
+                {
+                    var stream = await response.Content.ReadAsStreamAsync();
+                    var reader = new StreamReader(stream);
+                    var serializer = new XmlSerializer(typeof(RotaerAisWeb));
+                    result = (RotaerAisWeb)serializer.Deserialize(reader);                    
+                }
+
+                response.Dispose();
+                client.Dispose();
+                return result;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return null;
+            }
+        }
+
+        public async Task<List<MetarCollection>> GetMetar(string icaos)
+        {
+            try
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri($"https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString={icaos}&hoursBeforeNow=3")
+                };
+
+                var response = await client.SendAsync(request);
+                var status = response.EnsureSuccessStatusCode();
+                List<MetarCollection> result = null;
+
+                if (status.IsSuccessStatusCode)
+                {
+                    var stream = await response.Content.ReadAsStreamAsync();
+                    var reader = new StreamReader(stream);
+                    var serializer = new XmlSerializer(typeof(MetarAisWeb));
+                    var metarAisWeb = (MetarAisWeb)serializer.Deserialize(reader);
+                    result = metarAisWeb?.Metars;
+                }
+
+                response.Dispose();
+                client.Dispose();
+                return result;
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return null;
+            }
+        }
+
+
+
     }
 }

@@ -45,7 +45,16 @@ namespace Core.Models
         public List<Notam> Notams { get; set; }
         
         [JsonIgnore]
-        public List<AipSuplement> AipSuplements { get; set; }        
+        public List<AipSuplement> AipSuplements { get; set; }
+
+        [JsonIgnore]
+        public Rotaer Rotaer { get; set; }
+
+        [JsonIgnore]
+        public List<Metar> Metars { get; set; }
+
+        [JsonIgnore]
+        public Taf Taf { get; set; }
     }
 
 }

@@ -11,8 +11,10 @@ namespace Core.ViewModels
 {
     public class LocationDetailsViewModel : BaseItemDetailsViewModel<Location, LocationBusiness, LocationsManager>
     {
+
         public ObservableRangeCollection<NotamBusiness> NotamsBusiness { get; }
         public ObservableRangeCollection<AipSuplementBusiness> AipSuplementBusiness { get; }
+
 
         public LocationDetailsViewModel()
         {
@@ -33,7 +35,6 @@ namespace Core.ViewModels
                     {
                         Model = notam
                     });
-
                 }
 
                 foreach (var aipSuplement in Business.Model.AipSuplements)
@@ -43,6 +44,7 @@ namespace Core.ViewModels
                         Model = aipSuplement
                     });
                 }
+
             }
 
         }

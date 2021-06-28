@@ -16,10 +16,6 @@ namespace Core.Models
         string message;
         string notamid;
 
-        DateTime? start;
-        DateTime? end;
-        string permanent;
-
         Location location;
         Guid locationId;
         #endregion      
