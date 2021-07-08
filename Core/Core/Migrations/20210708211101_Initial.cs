@@ -29,9 +29,7 @@ namespace Core.Migrations
                     TypeUtil = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true),
                     Latitude = table.Column<string>(nullable: true),
-                    Longitude = table.Column<string>(nullable: true),
-                    OrgName = table.Column<string>(nullable: true),
-                    OrgType = table.Column<string>(nullable: true)
+                    Longitude = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,8 +129,7 @@ namespace Core.Migrations
                     Deleted = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true),
-                    LocationId = table.Column<Guid>(nullable: true),
-                    RotaerId = table.Column<Guid>(nullable: false)
+                    LocationId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -142,7 +139,7 @@ namespace Core.Migrations
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

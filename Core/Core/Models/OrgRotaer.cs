@@ -11,7 +11,7 @@ namespace Core.Models
         string type;
 
         Location location;
-        Guid rotaerId; 
+        Guid locationId;
         #endregion
 
         public string Name
@@ -32,10 +32,10 @@ namespace Core.Models
             set => SetProperty(ref location, value);
         }
         
-        public Guid RotaerId
+        public Guid LocationId
         {
-            get => rotaerId;
-            set => SetProperty(ref rotaerId, value);
+            get => locationId;
+            set => SetProperty(ref locationId, value);
         }
     }
 }

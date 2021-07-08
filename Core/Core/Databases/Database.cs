@@ -82,6 +82,7 @@ namespace Core.Databases
             modelBuilder.Entity<Location>().HasMany(location => location.Metars).WithOne(metar => metar.Location).HasForeignKey(metar => metar.LocationId).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Location>().HasMany(location => location.Tafs).WithOne(taf => taf.Location).HasForeignKey(taf => taf.LocationId).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Location>().HasMany(location => location.Runways).WithOne(runway => runway.Location).HasForeignKey(runway => runway.LocationId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Location>().HasMany(location => location.OrgRotaers).WithOne(orgRotaer => orgRotaer.Location).HasForeignKey(orgRotaer => orgRotaer.LocationId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

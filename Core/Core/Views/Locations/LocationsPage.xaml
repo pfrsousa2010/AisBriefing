@@ -13,10 +13,11 @@
     <views:LocationsXaml.ToolbarItems>
         <!--Criar botão apagar tudo-->
         <ToolbarItem Text="{extensions:Translate add}" Command="{Binding SearchCommand}" IconImageSource="{StaticResource Add}"/>
-        <ToolbarItem Text="{extensions:Translate refresh}" Command="{Binding RefreshCommand}" IconImageSource="{StaticResource Refresh}"/>
+        <ToolbarItem Text="{extensions:Translate refresh}" Command="{Binding RefreshCommand}" IconImageSource="{StaticResource Refresh}"/>        
     </views:LocationsXaml.ToolbarItems>
 
-    <StackLayout >        
+    <StackLayout >
+
         <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}">
             
             <CollectionView ItemsSource="{Binding Items}"

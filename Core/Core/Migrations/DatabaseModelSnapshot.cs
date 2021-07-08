@@ -89,12 +89,6 @@ namespace Core.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("OrgName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OrgType")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("SunRise")
                         .HasColumnType("TEXT");
 
@@ -192,13 +186,10 @@ namespace Core.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("LocationId")
+                    b.Property<Guid>("LocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("RotaerId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
@@ -324,7 +315,9 @@ namespace Core.Migrations
                 {
                     b.HasOne("Core.Models.Location", "Location")
                         .WithMany("OrgRotaers")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Models.Runway", b =>

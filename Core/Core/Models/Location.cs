@@ -24,8 +24,6 @@ namespace Core.Models
         string elevationFeet;
         string fir;
         string utc;
-        string orgName;
-        string orgType;
 
         List<Metar> metars;
         List<Taf> tafs;
@@ -135,18 +133,6 @@ namespace Core.Models
         {
             get => longitude;
             set => SetProperty(ref longitude, value);
-        }
-        [JsonIgnore]
-        public string OrgName
-        {
-            get => orgName;
-            set => SetProperty(ref orgName, value);
-        }
-        [JsonIgnore]
-        public string OrgType
-        {
-            get => orgType;
-            set => SetProperty(ref orgType, value);
         }
         #endregion    
 

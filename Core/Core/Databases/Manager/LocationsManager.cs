@@ -266,7 +266,7 @@ namespace Core.Databases
                 location.TypeOpr = rotaerAisWeb.TypeOprRotaer;
                 location.TypeUtil = rotaerAisWeb.TypeUtilRotaer;
 
-                var oldOrgRotaer = Database.OrgRotaers;
+                var oldOrgRotaer = Database.OrgRotaers.Where(s => s.LocationId == location.Id);
                 Database.RemoveRange(oldOrgRotaer);
 
                 if (rotaerAisWeb.Orgs?.Count > 0)
@@ -284,7 +284,7 @@ namespace Core.Databases
                     }
                 }
 
-                var oldRunways = Database.Runways;
+                var oldRunways = Database.Runways.Where(s => s.LocationId == location.Id);
                 Database.RemoveRange(oldRunways);
 
                 if (rotaerAisWeb.Runways?.Count > 0)
