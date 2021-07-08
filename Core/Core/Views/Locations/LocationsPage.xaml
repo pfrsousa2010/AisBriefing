@@ -11,13 +11,14 @@
                          Title="{extensions:Translate locations}">
 
     <views:LocationsXaml.ToolbarItems>
+        <!--Criar botão apagar tudo-->
         <ToolbarItem Text="{extensions:Translate add}" Command="{Binding SearchCommand}" IconImageSource="{StaticResource Add}"/>
         <ToolbarItem Text="{extensions:Translate refresh}" Command="{Binding RefreshCommand}" IconImageSource="{StaticResource Refresh}"/>
     </views:LocationsXaml.ToolbarItems>
 
-    <StackLayout>        
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}">            
-
+    <StackLayout >        
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}">
+            
             <CollectionView ItemsSource="{Binding Items}"
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
@@ -25,6 +26,7 @@
                     Margin="0,12">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+
                         <Grid>
                             <SwipeView x:DataType="business:LocationBusiness">
                                 <SwipeView.RightItems>
@@ -33,11 +35,9 @@
                                 </SwipeView.RightItems>
 
                                 <!--content-->
-                                <Grid>
-
-                                    <Frame Margin="9,3" HasShadow="True">
-                                        <StackLayout>
-
+                                <Grid >
+                                    <Frame Margin="9,3" HasShadow="True" >
+                                        <StackLayout >
                                             <!--#region Id ICAO -->
                                             <Label Text="{Binding Model.IdIcao, Mode=OneWay}"
                                            TextTransform="Uppercase"
@@ -47,7 +47,7 @@
                                             <!--#region Name -->
                                             <Label Text="{Binding Model.Name, Mode=OneWay}"/>
                                             <Label Text="{Binding Model.City, Mode=OneWay}"/>
-
+                                            
                                         </StackLayout>
                                     </Frame>
                                 </Grid>
@@ -56,7 +56,11 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </RefreshView>
+            
+        </RefreshView>       
+
     </StackLayout>
+    
+    
 
 </views:LocationsXaml>

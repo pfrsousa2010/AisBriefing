@@ -4,15 +4,16 @@ using System.Text;
 
 namespace Core.Models
 {
-    public class Runway: BaseModel
+    public class Runway : BaseModel
     {
-        #region Field
+        #region Fields
         string rwyIdent;
         string rwySurface;
         string rwyLength;
         string rwyWidth;
-        Rotaer rotaer;
-        Guid rotaerId;
+
+        Location location;
+        Guid locationId; 
         #endregion
 
         public string RwyWidth
@@ -35,17 +36,15 @@ namespace Core.Models
             get => rwyIdent;
             set => SetProperty(ref rwyIdent, value);
         }
-
-        public Rotaer Rotaer
+        public Location Location
         {
-            get => rotaer;
-            set => SetProperty(ref rotaer, value);
+            get => location;
+            set => SetProperty(ref location, value);
         }
-        
-        public Guid RotaerId
+        public Guid LocationId
         {
-            get => rotaerId;
-            set => SetProperty(ref rotaerId, value);
+            get => locationId;
+            set => SetProperty(ref locationId, value);
         }
     }
 }

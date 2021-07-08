@@ -17,7 +17,21 @@ namespace Core.Migrations
                     IdIcao = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true)
+                    Country = table.Column<string>(nullable: true),
+                    SunRise = table.Column<string>(nullable: true),
+                    SunSet = table.Column<string>(nullable: true),
+                    Utc = table.Column<string>(nullable: true),
+                    Fir = table.Column<string>(nullable: true),
+                    ElevationFeet = table.Column<string>(nullable: true),
+                    ElevationMeters = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
+                    TypeOpr = table.Column<string>(nullable: true),
+                    TypeUtil = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    Latitude = table.Column<string>(nullable: true),
+                    Longitude = table.Column<string>(nullable: true),
+                    OrgName = table.Column<string>(nullable: true),
+                    OrgType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,29 +123,46 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rotaers",
+                name: "OrgRotaers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
                     Deleted = table.Column<bool>(nullable: false),
-                    Utc = table.Column<string>(nullable: true),
-                    Fir = table.Column<string>(nullable: true),
-                    ElevationFeet = table.Column<string>(nullable: true),
-                    ElevationMeters = table.Column<string>(nullable: true),
-                    Category = table.Column<string>(nullable: true),
-                    TypeOpr = table.Column<string>(nullable: true),
-                    TypeUtil = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true),
-                    Latitude = table.Column<string>(nullable: true),
-                    Longitude = table.Column<string>(nullable: true),
+                    LocationId = table.Column<Guid>(nullable: true),
+                    RotaerId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrgRotaers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrgRotaers_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Runways",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
+                    Deleted = table.Column<bool>(nullable: false),
+                    RwyWidth = table.Column<string>(nullable: true),
+                    RwyLength = table.Column<string>(nullable: true),
+                    RwySurface = table.Column<string>(nullable: true),
+                    RwyIdent = table.Column<string>(nullable: true),
                     LocationId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rotaers", x => x.Id);
+                    table.PrimaryKey("PK_Runways", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rotaers_Locations_LocationId",
+                        name: "FK_Runways_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id",
@@ -159,52 +190,6 @@ namespace Core.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "OrgRotaers",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
-                    Deleted = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: true),
-                    RotaerId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrgRotaers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrgRotaers_Rotaers_RotaerId",
-                        column: x => x.RotaerId,
-                        principalTable: "Rotaers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Runways",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
-                    Deleted = table.Column<bool>(nullable: false),
-                    RwyWidth = table.Column<string>(nullable: true),
-                    RwyLength = table.Column<string>(nullable: true),
-                    RwySurface = table.Column<string>(nullable: true),
-                    RwyIdent = table.Column<string>(nullable: true),
-                    RotaerId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Runways", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Runways_Rotaers_RotaerId",
-                        column: x => x.RotaerId,
-                        principalTable: "Rotaers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AipSuplements_LocationId",
                 table: "AipSuplements",
@@ -221,26 +206,19 @@ namespace Core.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrgRotaers_RotaerId",
+                name: "IX_OrgRotaers_LocationId",
                 table: "OrgRotaers",
-                column: "RotaerId");
+                column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rotaers_LocationId",
-                table: "Rotaers",
-                column: "LocationId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Runways_RotaerId",
+                name: "IX_Runways_LocationId",
                 table: "Runways",
-                column: "RotaerId");
+                column: "LocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tafs_LocationId",
                 table: "Tafs",
-                column: "LocationId",
-                unique: true);
+                column: "LocationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -265,9 +243,6 @@ namespace Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tafs");
-
-            migrationBuilder.DropTable(
-                name: "Rotaers");
 
             migrationBuilder.DropTable(
                 name: "Locations");

@@ -6,9 +6,9 @@ using System.Xml.Serialization;
 namespace Core.Services
 {
     [XmlRoot("response")]
-    public class MetarAisWeb
+    public class TafWeb
     {
         [XmlElement("data")]
-        public List<MetarCollection> Metars;
+        public List<TafCollection> Tafs;
     }
 }

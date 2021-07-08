@@ -43,11 +43,9 @@ namespace Core.ViewModels
             viewModel.CallBackAsync = AddLocationCommand;
         }
 
-        public override async void OnAppearing()
+        public override void OnAppearing()
         {
             base.OnAppearing();
-            await Task.Delay(2000);
-            _= OnRefresh();
         }
     }
 }

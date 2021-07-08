@@ -187,6 +187,15 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latest TAF.
+        /// </summary>
+        internal static string latest_TAF {
+            get {
+                return ResourceManager.GetString("latest-TAF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location.
         /// </summary>
         internal static string location {
@@ -201,6 +210,15 @@ namespace Core.Resources {
         internal static string locations {
             get {
                 return ResourceManager.GetString("locations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to METAR for the last 2h.
+        /// </summary>
+        internal static string metar_last_2h {
+            get {
+                return ResourceManager.GetString("metar-last-2h", resourceCulture);
             }
         }
         

@@ -6,13 +6,11 @@ using System.Xml.Serialization;
 namespace Core.Services
 {
     
-    public class Metar
+    public class Taf
     {
         [XmlElement("raw_text")]
-        public string MsgMetar { get; set; }
+        public string MsgTaf { get; set; }
 
-        [XmlElement("flight_category")]
-        public string FlightCat { get; set; }
         [XmlElement("station_id")]
         public string StationId { get; set; }
 

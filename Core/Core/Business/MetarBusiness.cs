@@ -8,8 +8,8 @@ using Core.Extensions;
 
 namespace Core.Business
 {
-    public class RotaerBusiness : BaseBusiness<Rotaer>
+    public class MetarBusiness : BaseBusiness<Metar>
     {
-       
+        
     }
 }

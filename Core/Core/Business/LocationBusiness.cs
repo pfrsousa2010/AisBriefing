@@ -27,5 +27,6 @@ namespace Core.Business
             OnPropertyChanged(nameof(CityValidation));
             OnPropertyChanged(nameof(CountryValidation));
         }
+         
     }
 }

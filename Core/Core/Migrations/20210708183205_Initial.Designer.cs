@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20210628075847_Initial")]
+    [Migration("20210708183205_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,6 +58,9 @@ namespace Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Category")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
@@ -67,13 +70,52 @@ namespace Core.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ElevationFeet")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ElevationMeters")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Fir")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("IdIcao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Latitude")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Longitude")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("OrgName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OrgType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SunRise")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SunSet")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TypeOpr")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TypeUtil")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Utc")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -152,6 +194,9 @@ namespace Core.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
+                    b.Property<Guid?>("LocationId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -166,62 +211,9 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RotaerId");
+                    b.HasIndex("LocationId");
 
                     b.ToTable("OrgRotaers");
-                });
-
-            modelBuilder.Entity("Core.Models.Rotaer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ElevationFeet")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ElevationMeters")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Fir")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Latitude")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Longitude")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TypeOpr")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TypeUtil")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Utc")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocationId")
-                        .IsUnique();
-
-                    b.ToTable("Rotaers");
                 });
 
             modelBuilder.Entity("Core.Models.Runway", b =>
@@ -233,7 +225,7 @@ namespace Core.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("RotaerId")
+                    b.Property<Guid>("LocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RwyIdent")
@@ -253,7 +245,7 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RotaerId");
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Runways");
                 });
@@ -298,8 +290,7 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId")
-                        .IsUnique();
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Tafs");
                 });
@@ -333,27 +324,16 @@ namespace Core.Migrations
 
             modelBuilder.Entity("Core.Models.OrgRotaer", b =>
                 {
-                    b.HasOne("Core.Models.Rotaer", "Rotaer")
-                        .WithMany("Orgs")
-                        .HasForeignKey("RotaerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Core.Models.Rotaer", b =>
-                {
                     b.HasOne("Core.Models.Location", "Location")
-                        .WithOne("Rotaer")
-                        .HasForeignKey("Core.Models.Rotaer", "LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("OrgRotaers")
+                        .HasForeignKey("LocationId");
                 });
 
             modelBuilder.Entity("Core.Models.Runway", b =>
                 {
-                    b.HasOne("Core.Models.Rotaer", "Rotaer")
+                    b.HasOne("Core.Models.Location", "Location")
                         .WithMany("Runways")
-                        .HasForeignKey("RotaerId")
+                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -361,8 +341,8 @@ namespace Core.Migrations
             modelBuilder.Entity("Core.Models.Taf", b =>
                 {
                     b.HasOne("Core.Models.Location", "Location")
-                        .WithOne("Taf")
-                        .HasForeignKey("Core.Models.Taf", "LocationId")
+                        .WithMany("Tafs")
+                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

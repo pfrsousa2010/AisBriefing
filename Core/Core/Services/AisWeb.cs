@@ -11,8 +11,10 @@ namespace Core.Services
         public List<NotamCollection> Notams { get; set; }
 
         [XmlElement("suplementos")]
-        public List<AipSuplementCollection> AipSuplements { get; set; }  
+        public List<AipSuplementCollection> AipSuplements { get; set; }
 
+        [XmlElement("day")]
+        public DayCollection Day { get; set; }
     }
 
 }

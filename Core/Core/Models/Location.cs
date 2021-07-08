@@ -12,7 +12,25 @@ namespace Core.Models
         string name;
         string city;
         string country;
+        string sunRise;
+        string sunSet;
+        string latitude;
+        string longitude;
+        string type; //AD ou HP
+        string typeUtil; //PUB, MIL ou PRIV
+        string typeOpr; //VFR IFR
+        string category; //INTL ou NAC
+        string elevationMeters;
+        string elevationFeet;
+        string fir;
+        string utc;
+        string orgName;
+        string orgType;
+
+        List<Metar> metars;
+        List<Taf> tafs;
         #endregion
+
 
         [JsonProperty(PropertyName = "icao")]
         public string IdIcao
@@ -41,6 +59,97 @@ namespace Core.Models
             set => SetProperty(ref country, value);
         }
 
+        #region SunTimes
+        [JsonIgnore]
+        public string SunRise
+        {
+            get => sunRise;
+            set => SetProperty(ref sunRise, value);
+        }
+
+        [JsonIgnore]
+        public string SunSet
+        {
+            get => sunSet;
+            set => SetProperty(ref sunSet, value);
+        }
+        #endregion
+
+        #region Rotaer
+        [JsonIgnore]
+        public string Utc
+        {
+            get => utc;
+            set => SetProperty(ref utc, value);
+        }
+        [JsonIgnore]
+        public string Fir
+        {
+            get => fir;
+            set => SetProperty(ref fir, value);
+        }
+        [JsonIgnore]
+        public string ElevationFeet
+        {
+            get => elevationFeet;
+            set => SetProperty(ref elevationFeet, value);
+        }
+        [JsonIgnore]
+        public string ElevationMeters
+        {
+            get => elevationMeters;
+            set => SetProperty(ref elevationMeters, value);
+        }
+        [JsonIgnore]
+        public string Category
+        {
+            get => category;
+            set => SetProperty(ref category, value);
+        }
+        [JsonIgnore]
+        public string TypeOpr
+        {
+            get => typeOpr;
+            set => SetProperty(ref typeOpr, value);
+        }
+        [JsonIgnore]
+        public string TypeUtil
+        {
+            get => typeUtil;
+            set => SetProperty(ref typeUtil, value);
+        }
+        [JsonIgnore]
+        public string Type
+        {
+            get => type;
+            set => SetProperty(ref type, value);
+        }
+        [JsonIgnore]
+        public string Latitude
+        {
+            get => latitude;
+            set => SetProperty(ref latitude, value);
+        }
+        [JsonIgnore]
+        public string Longitude
+        {
+            get => longitude;
+            set => SetProperty(ref longitude, value);
+        }
+        [JsonIgnore]
+        public string OrgName
+        {
+            get => orgName;
+            set => SetProperty(ref orgName, value);
+        }
+        [JsonIgnore]
+        public string OrgType
+        {
+            get => orgType;
+            set => SetProperty(ref orgType, value);
+        }
+        #endregion    
+
         [JsonIgnore]
         public List<Notam> Notams { get; set; }
         
@@ -48,13 +157,33 @@ namespace Core.Models
         public List<AipSuplement> AipSuplements { get; set; }
 
         [JsonIgnore]
-        public Rotaer Rotaer { get; set; }
+        public List<Runway> Runways { get; set; }
+        public List<OrgRotaer> OrgRotaers { get; set; }
 
         [JsonIgnore]
-        public List<Metar> Metars { get; set; }
+        public List<Metar> Metars
+        {
+            get => metars;
+            set
+            {
+                SetProperty(ref metars, value);
+                OnPropertyChanged(nameof(HasMetar));
+            }
+        }
 
         [JsonIgnore]
-        public Taf Taf { get; set; }
+        public List<Taf> Tafs
+        {
+            get => tafs;
+            set
+            {
+                SetProperty(ref tafs, value);
+                OnPropertyChanged(nameof(HasTaf));
+            }
+        }
+
+        public bool HasMetar => Metars?.Count > 0;
+        public bool HasTaf => Tafs?.Count > 0;
     }
 
 }

@@ -37,5 +37,6 @@ namespace Core.Models
             set => SetProperty(ref locationId, value);
         }
 
+
     }
 }

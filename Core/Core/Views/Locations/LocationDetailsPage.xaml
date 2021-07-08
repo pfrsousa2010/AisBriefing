@@ -12,107 +12,207 @@
                           x:Class="Core.Views.LocationDetailsPage"
                           Title="{Binding Business.Model.IdIcao}">
 
-    <ScrollView>
-        <StackLayout VerticalOptions="Fill">
-            <StackLayout Spacing="2" BackgroundColor="Transparent">
+    <FlexLayout WidthRequest="400">
+        <ScrollView VerticalScrollBarVisibility="Never">
+
+            <StackLayout Spacing="1" >
+
+                <!--SunRise SunSet-->
+                <Grid ColumnDefinitions="*,*" BackgroundColor="Transparent" Margin="10,5,10,0">
+                    
+                    <Frame Grid.Column="0" HasShadow="True" Padding="10" Margin="0,15,0,15">
+                        <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
+                            <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE7F;" 
+                                   FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="1" Text="{Binding Business.Model.SunRise, Mode=OneWay, StringFormat='{0} UTC'}" 
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                                   FontAttributes="Bold"
+                                   FontSize="16"/>
+                        </Grid>
+                    </Frame>
+
+                    <Frame Grid.Column="1" HasShadow="True" Padding="10" Margin="0,15,0,15">
+                        <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
+                            <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE80;" 
+                                   FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="1" Text="{Binding Business.Model.SunSet, Mode=OneWay, StringFormat='{0} UTC'}" 
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                                   FontAttributes="Bold"
+                                   FontSize="16"/>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
 
                 <!--Rotaer-->
-                <Frame HasShadow="True" Margin="10,10,10,5">
-                    
-                    <StackLayout HorizontalOptions="Center">
+                <Frame HasShadow="True" Margin="10,0,10,5" Padding="10">
 
-                        <Grid ColumnDefinitions="160,auto">
-                            
+                    <StackLayout HorizontalOptions="FillAndExpand">
+
+                        <Grid HorizontalOptions="EndAndExpand">
+
                             <Label Grid.Column="0" HorizontalOptions="Start" 
-                                   Text="{Binding Business.Model.Name, Mode=OneWay}" FontAttributes="Bold"/>
+                                   Text="{Binding Business.Model.Name, Mode=OneWay}" FontAttributes="Bold" HorizontalTextAlignment="Start" FontSize="Body"/>
+
                             <Grid Grid.Column="1" RowDefinitions="15,15,15" ColumnDefinitions="68,68" 
-                                  HorizontalOptions="Center" VerticalOptions="Start" RowSpacing="0.2" ColumnSpacing="0">
+                                  HorizontalOptions="End" VerticalOptions="Start" RowSpacing="0.2" ColumnSpacing="0">
                                 <Label FontSize="12" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"  
                                    Text="Latitude"/>
                                 <Label FontSize="12" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"  
                                    Text="Longitude"/>
                                 <Label FontSize="12" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" 
-                                   Text="{Binding Business.Model.Rotaer.Latitude, Mode=OneWay, StringFormat='{0}'}" FontAttributes="Bold"/>
+                                   Text="{Binding Business.Model.Latitude, Mode=OneWay, StringFormat='{0}'}" FontAttributes="Bold"/>
                                 <Label FontSize="12" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"
-                                   Text="{Binding Business.Model.Rotaer.Longitude, Mode=OneWay,  StringFormat='{0}'}" FontAttributes="Bold"/>
+                                   Text="{Binding Business.Model.Longitude, Mode=OneWay,  StringFormat='{0}'}" FontAttributes="Bold"/>
                                 <Label FontSize="12" HorizontalOptions="End" Grid.Row="2" Grid.Column="0"
-                                       Text="{Binding Business.Model.Rotaer.ElevationFeet, Mode=OneWay, StringFormat='Elev: {0} ft '}"/>
+                                       Text="{Binding Business.Model.ElevationFeet, Mode=OneWay, StringFormat='Elev: {0} ft '}"/>
                                 <Label FontSize="12" HorizontalOptions="Center" Grid.Row="2" Grid.Column="1" 
-                                       Text="{Binding Business.Model.Rotaer.ElevationMeters, Mode=OneWay, StringFormat='({0} m)'}"/>
+                                       Text="{Binding Business.Model.ElevationMeters, Mode=OneWay, StringFormat='({0} m)'}"/>
                             </Grid>
                         </Grid>
-                        
-                        <StackLayout BindableLayout.ItemsSource="{Binding Business.Model.Rotaer.Orgs}" HorizontalOptions="Center">
+
+                        <!--Orgs-->
+                        <StackLayout BindableLayout.ItemsSource="{Binding Business.Model.OrgRotaers}" HorizontalOptions="Center">
 
                             <BindableLayout.ItemTemplate>
-                                <DataTemplate >
-                                    <StackLayout x:DataType="models:OrgRotaer">
-                                        <Grid ColumnDefinitions="auto,auto,auto" HorizontalOptions="Center">
-                                            <Label Grid.Column="0" Text="{Binding Name, Mode=OneWay}"/>
+                                <DataTemplate>
+                                    <StackLayout x:DataType="models:OrgRotaer" >
+                                        <Grid ColumnDefinitions="*,auto,auto" HorizontalOptions="Center" Padding="3">
+                                            <Label Grid.Column="0" Text="{Binding Name, Mode=OneWay}" HorizontalTextAlignment="Center"/>
                                             <Label Grid.Column="1" Text="{Binding Type, Mode=OneWay}"/>
-                                            <Label Grid.Column="2" Text="{Binding Rotaer.Utc, Mode=OneWay, StringFormat='(UTC {0})'}"/>
+                                            <Label Grid.Column="2" Text="{Binding Location.Utc, Mode=OneWay, StringFormat='(UTC {0})'}"/>
                                         </Grid>
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
 
-                        <Frame HasShadow="True" Padding="5">
-                            <StackLayout BindableLayout.ItemsSource="{Binding Business.Model.Rotaer.Runways}">
+                        <!--Runways-->
+                        <Frame HasShadow="True" Padding="5" BorderColor="Gray">
+                            <StackLayout BindableLayout.ItemsSource="{Binding Business.Model.Runways}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate >
                                         <StackLayout x:DataType="models:Runway">
-                                            <Grid ColumnDefinitions="auto,auto,auto,auto" HorizontalOptions="Center">
-                                                <Label Grid.Column="0" Text="{Binding RwyIdent , Mode=OneWay, StringFormat='Rwy {0}'}"/>
-                                                <Label Grid.Column="1" Text="{Binding RwyLength, Mode=OneWay, StringFormat='= {0}m'}" HorizontalOptions="End"/>
-                                                <Label Grid.Column="2" Text="{Binding RwyWidth, Mode=OneWay, StringFormat='x {0}m'}" HorizontalOptions="Start"/>
-                                                <Label Grid.Column="3" Text="{Binding RwySurface, Mode=OneWay, StringFormat='({0})'}"/>
+                                            <Grid ColumnDefinitions="auto,auto,auto,auto,auto,auto" HorizontalOptions="CenterAndExpand">
+                                                <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEFD8;" FontSize="25" Rotation="90" 
+                                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                <Label Grid.Column="1" Text="{Binding RwyIdent, Mode=OneWay}"
+                                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                <Label Grid.Column="2" Text="{Binding RwyLength, Mode=OneWay, StringFormat='= {0}m'}"
+                                                       HorizontalOptions="End" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                <Label Grid.Column="3" Text="{Binding RwyWidth, Mode=OneWay, StringFormat='x {0}m'}" 
+                                                       HorizontalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                                <Label Grid.Column="4" Text="{Binding RwySurface, Mode=OneWay, StringFormat='({0})'}"
+                                                       VerticalTextAlignment="Center"/>
+                                                <Label Grid.Column="5" FontFamily="IcoFont" Text="&#xEFD8;" FontSize="25" Rotation="90" 
+                                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </Grid>
                                         </StackLayout>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout>
+
                         </Frame>
 
-                        <Grid RowDefinitions="22" ColumnDefinitions="auto,auto,auto,auto,auto"
-                              HorizontalOptions="Center" VerticalOptions="Center" ColumnSpacing="5" >
+                        <Grid ColumnDefinitions="auto,auto,auto,auto,auto"
+                              HorizontalOptions="Center" VerticalOptions="Center" ColumnSpacing="15" BackgroundColor="Transparent">
 
-                            <BoxView Grid.Column="0"/>
-                            <Label HorizontalOptions="Center" Grid.Column="0"
-                                   Text="{Binding Business.Model.Rotaer.Type, Mode=OneWay}"/>
-                            <BoxView Grid.Column="1"/>
-                            <Label HorizontalOptions="Center" Grid.Column="1" 
-                                   Text="{Binding Business.Model.Rotaer.TypeUtil, Mode=OneWay}"/>
-                            <BoxView Grid.Column="2"/>
-                            <Label HorizontalOptions="Center" Grid.Column="2" 
-                                   Text="{Binding Business.Model.Rotaer.Category, Mode=OneWay}"/>
-                            <BoxView Grid.Column="3"/>
-                            <Label HorizontalOptions="Center" Grid.Column="3" 
-                                   Text="{Binding Business.Model.Rotaer.TypeOpr, Mode=OneWay}"/>
-                            <BoxView Grid.Column="4"/>
-                            <Label HorizontalOptions="Center" Grid.Column="4" 
-                                   Text="{Binding Business.Model.Rotaer.Fir, Mode=OneWay, StringFormat='FIR ( {0} )'}"/>
+                            <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" Padding="5">
+                                <Label Text="{Binding Business.Model.Type, Mode=OneWay}"/>
+                            </Frame>
+                            <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Padding="5">
+                                <Label Text="{Binding Business.Model.TypeUtil, Mode=OneWay}"/>
+                            </Frame>
+                            <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" Padding="5">
+                                <Label Text="{Binding Business.Model.Category, Mode=OneWay}"/>
+                            </Frame>
+                            <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Padding="5">
+                                <Label Text="{Binding Business.Model.TypeOpr, Mode=OneWay}"/>
+                            </Frame>
+                            <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4" Padding="5">
+                                <Label Text="{Binding Business.Model.Fir, Mode=OneWay, StringFormat='FIR ( {0} )'}"/>
+                            </Frame>
 
                         </Grid>
-
-                        <Frame HasShadow="True" Padding="5">
-                            <StackLayout BindableLayout.ItemsSource="{Binding Business.Model.Metars}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate >
-                                        <StackLayout x:DataType="models:Metar">
-                                            <Grid ColumnDefinitions="auto,auto,auto,auto" HorizontalOptions="Center">
-                                                <Label Grid.Column="0" Text="{Binding MessageMetar , Mode=OneWay}"/>
-                                            </Grid>
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </Frame>
-
-
-
                     </StackLayout>
                 </Frame>
+
+                <!--METAR-->
+                <Frame HasShadow="True" Margin="10,10,10,1" Padding="2,1,5,10" IsVisible="{Binding Business.Model.HasMetar}">
+
+                    <Grid RowDefinitions="auto,auto">
+
+                        <Frame Grid.Row="0" HasShadow="True" Margin="10,5,10,1" HorizontalOptions="Center" Padding="5" VerticalOptions="Start" >
+                            <Label Text="{extensions:Translate metar-last-2h}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                        </Frame>
+
+                        <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding Business.Model.Metars}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate >
+                                    <StackLayout x:DataType="models:Metar">
+                                        <Grid ColumnDefinitions="*,auto" HorizontalOptions="FillAndExpand">
+                                            <Label Grid.Column="0" Text="{Binding MessageMetar , Mode=OneWay}"
+                                                   HorizontalOptions="Start"
+                                                   HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"/>
+
+                                            <Frame Grid.Column="1" HasShadow="True" Padding="5" HorizontalOptions="End" WidthRequest="45">
+                                                <Label Text="{Binding FlightCategory , Mode=OneWay}"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center"
+                                                   FontAttributes="Bold">
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding FlightCategory}" Value="VFR">
+                                                            <Setter Property="TextColor" Value="green" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding FlightCategory}" Value="MVFR">
+                                                            <Setter Property="TextColor" Value="DodgerBlue" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding FlightCategory}" Value="IFR">
+                                                            <Setter Property="TextColor" Value="Red" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding FlightCategory}" Value="LIFR">
+                                                            <Setter Property="TextColor" Value="DarkViolet" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+
+                                            </Frame>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+
+
+                    </Grid>
+
+                </Frame>
+
+                <!--TAF-->
+                <Frame HasShadow="True" Margin="10,10,10,1" Padding="5,1,5,5" IsVisible="{Binding Business.Model.HasTaf}">
+                    <Grid RowDefinitions="auto,auto">
+
+                        <Frame Grid.Row="0" HasShadow="True" Margin="10,5,10,1" HorizontalOptions="Center" Padding="10,5,10,5" VerticalOptions="Start" >
+                            <Label Text="{extensions:Translate latest-TAF}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                        </Frame>
+
+                        <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding Business.Model.Tafs}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate >
+                                    <StackLayout x:DataType="models:Taf">
+                                        <Label Grid.Column="0" Text="{Binding MessageTaf , Mode=OneWay}"
+                                                   HorizontalOptions="Center"
+                                                   HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" LineHeight="1.3"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+
+
+                    </Grid>
+
+                </Frame>
+
 
                 <!--Notams-->
                 <StackLayout HorizontalOptions="Center" Margin="10,10,10,1">
@@ -182,8 +282,8 @@
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
-    </ScrollView>
 
+        </ScrollView>
+    </FlexLayout>
 
 </views:LocationDetailsXaml>

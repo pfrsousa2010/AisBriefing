@@ -35,15 +35,12 @@ namespace Core.Databases
          }
 
         public DbSet<Location> Locations { get; set; }
-
         public DbSet<Notam> Notams { get; set; }
         public DbSet<AipSuplement> AipSuplements { get; set; }
-        public DbSet<Rotaer> Rotaers { get; set; }
-        public DbSet<OrgRotaer> OrgRotaers { get; set; }
-        public DbSet<Runway> Runways { get; set; }
         public DbSet<Metar> Metars { get; set; }
         public DbSet<Taf> Tafs { get; set; }
-
+        public DbSet<Runway> Runways { get; set; }
+        public DbSet<OrgRotaer> OrgRotaers { get; set; }
         public DbSet<Settings> Settings { get; set; }
 
         public Database(DbContextOptions<Database> options) : base(options)
@@ -81,12 +78,10 @@ namespace Core.Databases
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Comportamento em cascata
         {
             modelBuilder.Entity<Location>().HasMany(location => location.Notams).WithOne(notam => notam.Location).HasForeignKey(notam => notam.LocationId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Location>().HasMany(location => location.AipSuplements).WithOne(aipSuplement => aipSuplement.Location).HasForeignKey(aipSuplement => aipSuplement.LocationId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Location>().HasOne(location => location.Rotaer).WithOne(rotaer => rotaer.Location).HasForeignKey<Rotaer>(rotaer => rotaer.LocationId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Location>().HasMany(location => location.AipSuplements).WithOne(aipSuplement => aipSuplement.Location).HasForeignKey(aipSuplement => aipSuplement.LocationId).OnDelete(DeleteBehavior.Cascade);            
             modelBuilder.Entity<Location>().HasMany(location => location.Metars).WithOne(metar => metar.Location).HasForeignKey(metar => metar.LocationId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Location>().HasOne(location => location.Taf).WithOne(taf => taf.Location).HasForeignKey<Taf>(taf => taf.LocationId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Rotaer>().HasMany(rotaer => rotaer.Orgs).WithOne(org => org.Rotaer).HasForeignKey(org => org.RotaerId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Rotaer>().HasMany(rotaer => rotaer.Runways).WithOne(runway => runway.Rotaer).HasForeignKey(runway => runway.RotaerId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Location>().HasMany(location => location.Tafs).WithOne(taf => taf.Location).HasForeignKey(taf => taf.LocationId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Location>().HasMany(location => location.Runways).WithOne(runway => runway.Location).HasForeignKey(runway => runway.LocationId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -22,12 +22,15 @@
   </Target>
   <ItemGroup>
     <Compile Remove="Enums\**" />
+    <Compile Remove="MultilingualResources\**" />
     <Compile Remove="ViewModels\Settings\**" />
     <Compile Remove="Views\Locations\NewFolder\**" />
     <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="MultilingualResources\**" />
     <EmbeddedResource Remove="ViewModels\Settings\**" />
     <EmbeddedResource Remove="Views\Locations\NewFolder\**" />
     <None Remove="Enums\**" />
+    <None Remove="MultilingualResources\**" />
     <None Remove="ViewModels\Settings\**" />
     <None Remove="Views\Locations\NewFolder\**" />
   </ItemGroup>
@@ -37,7 +40,6 @@
     <None Remove="Fonts\material.ttf" />
     <None Remove="Images\logo-dark.png" />
     <None Remove="Images\logo-light.png" />
-    <None Remove="MultilingualResources\Core.pt-BR.xlf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
@@ -110,5 +112,8 @@
     <Compile Update="Views\Settings\EditSettingsPage.xaml.cs">
       <DependentUpon>EditSettingsPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\AviationWeather\" />
   </ItemGroup>
 </Project>

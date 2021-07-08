@@ -15,11 +15,13 @@ namespace Core.Databases
         //Load the Notams added by location on starting
         public override IQueryable<Location> GetIncludes(IQueryable<Location> entities)
         {
-            return entities.Include(Location => Location.Notams)
+            return entities
+                .Include(Location => Location.Notams)
                 .Include(Location => Location.AipSuplements)
-                .Include(Location => Location.Rotaer)
-                .Include(Location => Location.Rotaer.Orgs)
-                .Include(Location => Location.Rotaer.Runways);
+                .Include(Location => Location.Metars)
+                .Include(Location => Location.Tafs)
+                .Include(Location => Location.Runways)
+                .Include(Location => Location.OrgRotaers);
         }
 
         public override async Task Add(Location entity)
@@ -38,7 +40,9 @@ namespace Core.Databases
             var notamsAisWeb = await aisWebService.GetNotams(entity.IdIcao);
             var aipSuplementsAisWeb = await aisWebService.GetAipSuplements(entity.IdIcao);
             var rotaerAisWeb = await aisWebService.GetRotaer(entity.IdIcao);
+            var sunTimeWeb = await aisWebService.GetSunSetSunRise(entity.IdIcao);
             var metarAisWeb = await aisWebService.GetMetar(entity.IdIcao);
+            var tafAisWeb = await aisWebService.GetTaf(entity.IdIcao);
 
             //Add NOTAMS
             if (notamsAisWeb?.Count > 0)
@@ -65,6 +69,7 @@ namespace Core.Databases
 
                 } 
             }
+            
             //Add AipSuplements
             if (aipSuplementsAisWeb?.Count > 0)
             {
@@ -88,57 +93,66 @@ namespace Core.Databases
                 }
 
             }
+            
             //Add Rotaer Informations
             if (rotaerAisWeb != null)
             {
-                var newRotaer = new Rotaer
-                {
-                    Utc = rotaerAisWeb.UtcRotaer,
-                    Category = rotaerAisWeb.CategoryRotaer,
-                    ElevationFeet = rotaerAisWeb.altFeetRotaer,
-                    ElevationMeters = rotaerAisWeb.altMetersRotaer,
-                    Fir = rotaerAisWeb.FirRotaer,
-                    Latitude = rotaerAisWeb.LatRotaer,
-                    Longitude = rotaerAisWeb.LngRotaer,
-                    Type = rotaerAisWeb.TypeRotaer,
-                    TypeOpr = rotaerAisWeb.TypeOprRotaer,
-                    TypeUtil = rotaerAisWeb.TypeUtilRotaer
-                };
+                entity.Utc = rotaerAisWeb.UtcRotaer;
+                entity.Category = rotaerAisWeb.CategoryRotaer;
+                entity.ElevationFeet = rotaerAisWeb.altFeetRotaer;
+                entity.ElevationMeters = rotaerAisWeb.altMetersRotaer;
+                entity.Fir = rotaerAisWeb.FirRotaer;
+                entity.Latitude = rotaerAisWeb.LatRotaer;
+                entity.Longitude = rotaerAisWeb.LngRotaer;
+                entity.Type = rotaerAisWeb.TypeRotaer;
+                entity.TypeOpr = rotaerAisWeb.TypeOprRotaer;
+                entity.TypeUtil = rotaerAisWeb.TypeUtilRotaer;
 
                 if (rotaerAisWeb.Orgs?.Count > 0)
                 {
-                    newRotaer.Orgs = new List<OrgRotaer>();
-
-                    foreach(var item in rotaerAisWeb.Orgs)
+                    if (entity.OrgRotaers == null)
                     {
-                        newRotaer.Orgs.Add(new OrgRotaer 
+                        entity.OrgRotaers = new List<Models.OrgRotaer>();
+                    }
+
+                    foreach (var org in rotaerAisWeb.Orgs)
+                    {
+                        entity.OrgRotaers.Add(new Models.OrgRotaer
                         {
-                            Name = item.Name,
-                            Type = item.Type
+                            Name = org.Name,
+                            Type = org.Type
                         });
                     }
                 }
 
                 if (rotaerAisWeb.Runways?.Count > 0)
                 {
-                    newRotaer.Runways = new List<Runway>();
+                    if (entity.Runways == null)
+                    {
+                        entity.Runways = new List<Models.Runway>();
+                    }
 
                     foreach (var runway in rotaerAisWeb.Runways)
                     {
-                        foreach(var item in runway.Items)
+                        foreach (var item in runway.Items)
                         {
-                            newRotaer.Runways.Add(new Runway
+                            entity.Runways.Add(new Models.Runway
                             {
-                                RwyWidth = item.WidthRwy,
-                                RwyLength = item.LengthRwy,
+                                RwyIdent = item.IdentRwy,
                                 RwySurface = item.SurfaceRwy,
-                                RwyIdent = item.IdentRwy
+                                RwyLength = item.LengthRwy,
+                                RwyWidth = item.WidthRwy
                             });
                         }
                     }
                 }
+            }
 
-                entity.Rotaer = newRotaer;
+            //Add SunSetSunRise Informations
+            if (sunTimeWeb != null)
+            {
+                entity.SunRise = sunTimeWeb.SunRiseWeb;
+                entity.SunSet = sunTimeWeb.SunSetWeb;
             }
 
             //Add Metar Informations
@@ -163,6 +177,27 @@ namespace Core.Databases
                 }
             }
 
+            //Add Taf Informations
+            if (tafAisWeb?.Count > 0)
+            {
+                if (entity.Tafs == null)
+                {
+                    entity.Tafs = new List<Models.Taf>();
+                }
+
+                foreach (var item in tafAisWeb)
+                {
+                    foreach (var taf in item.Items)
+                    {
+                        entity.Tafs.Add(new Models.Taf
+                        {
+                            MessageTaf = taf.MsgTaf                            
+                        });
+                    }
+
+                }
+            }
+
             await base.Add(entity);
         }
 
@@ -179,11 +214,14 @@ namespace Core.Databases
                 }
 
                 await RefreshNotams(entities);
+                await RefreshMetars(entities);
+                await RefreshTafs(entities);
 
                 foreach (var item in entities)
                 {
                     await RefreshAipSuplements(item);
-                    //await RefreshRotaer(item);
+                    await RefreshSunTime(item);
+                    await RefreshRotaer(item);
                 }
             }
             catch (Exception e)
@@ -193,70 +231,88 @@ namespace Core.Databases
             }
         }
 
-        //public async Task RefreshRotaer(Location location)
-        //{
-        //    //var oldrotaers = Database.Rotaers.Where(s => s.LocationId == location.Id);
-        //    //Database.Remove(oldrotaers);
-        //    //Database.SaveChanges();
+        public async Task RefreshSunTime(Location location)
+        
+        {
+            var aisWebService = new AisWebService();
+            var sunTimeWeb = await aisWebService.GetSunSetSunRise(location.IdIcao);
 
-        //    var aisWebService = new AisWebService();
-        //    var rotaerAisWeb = await aisWebService.GetRotaer(location.IdIcao);
+            if (sunTimeWeb != null)
+            {
+                location.SunRise = sunTimeWeb.SunRiseWeb;
+                location.SunSet = sunTimeWeb.SunSetWeb;
 
-        //    if (rotaerAisWeb != null)
-        //    {
-        //        var newRotaer = new Rotaer
-        //        {
-        //            Utc = rotaerAisWeb.UtcRotaer,
-        //            Category = rotaerAisWeb.CategoryRotaer,
-        //            ElevationFeet = rotaerAisWeb.altFeetRotaer,
-        //            ElevationMeters = rotaerAisWeb.altMetersRotaer,
-        //            Fir = rotaerAisWeb.FirRotaer,
-        //            Latitude = rotaerAisWeb.LatRotaer,
-        //            Longitude = rotaerAisWeb.LngRotaer,
-        //            Type = rotaerAisWeb.TypeRotaer,
-        //            TypeOpr = rotaerAisWeb.TypeOprRotaer,
-        //            TypeUtil = rotaerAisWeb.TypeUtilRotaer                    
-        //        };
+                Database.Update(location);
+            }
 
-        //        if (rotaerAisWeb.Orgs?.Count > 0)
-        //        {
-        //            newRotaer.Orgs = new List<OrgRotaer>();
+            Database.SaveChanges();
+        }
 
-        //            foreach (var item in rotaerAisWeb.Orgs)
-        //            {
-        //                newRotaer.Orgs.Add(new OrgRotaer
-        //                {
-        //                    Name = item.Name,
-        //                    Type = item.Type
-        //                });
-        //            }
-        //        }
+        public async Task RefreshRotaer(Location location)
+        {
+            var aisWebService = new AisWebService();
+            var rotaerAisWeb = await aisWebService.GetRotaer(location.IdIcao);
 
-        //        if (rotaerAisWeb.Runways?.Count > 0)
-        //        {
-        //            newRotaer.Runways = new List<Runway>();
+            if (rotaerAisWeb != null)
+            {
+                location.Utc = rotaerAisWeb.UtcRotaer;
+                location.Category = rotaerAisWeb.CategoryRotaer;
+                location.ElevationFeet = rotaerAisWeb.altFeetRotaer;
+                location.ElevationMeters = rotaerAisWeb.altMetersRotaer;
+                location.Fir = rotaerAisWeb.FirRotaer;
+                location.Latitude = rotaerAisWeb.LatRotaer;
+                location.Longitude = rotaerAisWeb.LngRotaer;
+                location.Type = rotaerAisWeb.TypeRotaer;
+                location.TypeOpr = rotaerAisWeb.TypeOprRotaer;
+                location.TypeUtil = rotaerAisWeb.TypeUtilRotaer;
 
-        //            foreach (var runway in rotaerAisWeb.Runways)
-        //            {
-        //                foreach (var item in runway.Items)
-        //                {
-        //                    newRotaer.Runways.Add(new Runway
-        //                    {
-        //                        RwyWidth = item.WidthRwy,
-        //                        RwyLength = item.LengthRwy,
-        //                        RwySurface = item.SurfaceRwy,
-        //                        RwyIdent = item.IdentRwy
-        //                    });
-        //                }
-        //            }
-        //        }
+                var oldOrgRotaer = Database.OrgRotaers;
+                Database.RemoveRange(oldOrgRotaer);
 
-        //        Database.Add(newRotaer);
+                if (rotaerAisWeb.Orgs?.Count > 0)
+                {
+                    foreach (var org in rotaerAisWeb.Orgs)
+                    {
+                        var newOrgRotaer = new OrgRotaer
+                        {
+                            Name = org.Name,
+                            Type = org.Type,
+                            Location = location
+                        };
 
-        //    }
+                        Database.Add(newOrgRotaer);
+                    }
+                }
 
-        //    Database.SaveChanges();
-        //}
+                var oldRunways = Database.Runways;
+                Database.RemoveRange(oldRunways);
+
+                if (rotaerAisWeb.Runways?.Count > 0)
+                {
+                    foreach (var runway in rotaerAisWeb.Runways)
+                    {
+                        foreach (var item in runway.Items)
+                        {
+
+                            var newRunway = new Runway
+                            {
+                                RwyIdent = item.IdentRwy,
+                                RwySurface = item.SurfaceRwy,
+                                RwyLength = item.LengthRwy,
+                                RwyWidth = item.WidthRwy,
+                                Location = location
+                            };
+
+                            Database.Add(newRunway);
+                        }
+                    }
+                }
+
+                Database.Update(location);
+            }
+
+            Database.SaveChanges();
+        }
 
         public async Task RefreshAipSuplements(Location location)
         {
@@ -332,5 +388,84 @@ namespace Core.Databases
             Database.SaveChanges();        
 
         }
+
+        public async Task RefreshMetars(List<Location> entities)
+        {
+
+            var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
+            var locationIds = entities.Select(s => s.Id);
+
+            var oldMetars = Database.Metars.Where(s => locationIds.Contains(s.LocationId));
+            Database.RemoveRange(oldMetars);
+
+            var aisWebService = new AisWebService();
+
+            var metarsAisWeb = await aisWebService.GetMetar(icaoIds);
+
+            // add metars
+            if (metarsAisWeb != null || metarsAisWeb.Count > 0)
+            {
+                foreach (var item in metarsAisWeb)
+                {
+                    foreach (var metar in item.Items)
+                    {
+                        var location = entities.Where(l => l.IdIcao == metar.StationId).FirstOrDefault();
+
+                        var newMetar = new Models.Metar
+                        {
+                            MessageMetar = metar.MsgMetar,
+                            FlightCategory = metar.FlightCat,                            
+                            Location = location
+                        };
+
+                        Database.Add(newMetar);
+                    }
+                }
+
+            }
+
+            Database.SaveChanges();
+
+        }
+
+        public async Task RefreshTafs(List<Location> entities)
+        {
+
+            var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
+            var locationIds = entities.Select(s => s.Id);
+
+            var oldTafs = Database.Tafs.Where(s => locationIds.Contains(s.LocationId));
+            Database.RemoveRange(oldTafs);
+
+            var aisWebService = new AisWebService();
+
+            var tafsAisWeb = await aisWebService.GetTaf(icaoIds);
+
+            // add metars
+            if (tafsAisWeb != null || tafsAisWeb.Count > 0)
+            {
+                foreach (var item in tafsAisWeb)
+                {
+                    foreach (var taf in item.Items)
+                    {
+                        var location = entities.Where(l => l.IdIcao == taf.StationId).FirstOrDefault();
+
+                        var newTaf = new Models.Taf
+                        {
+                            MessageTaf = taf.MsgTaf,
+                            Location = location
+                        };
+
+                        Database.Add(newTaf);
+                    }
+                }
+
+            }
+
+            Database.SaveChanges();
+
+        }
+
+
     }
 }

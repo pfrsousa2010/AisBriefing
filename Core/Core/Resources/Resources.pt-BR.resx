@@ -195,4 +195,10 @@
   <data name="permanent" xml:space="preserve">
     <value>Permanente</value>
   </data>
+  <data name="metar-last-2h" xml:space="preserve">
+    <value>METAR das últimas 2h</value>
+  </data>
+  <data name="latest-TAF" xml:space="preserve">
+    <value>Último TAF</value>
+  </data>
 </root>

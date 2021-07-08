@@ -31,6 +31,10 @@
             <Style TargetType="Label" ApplyToDerivedTypes="True">
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColorLight}}"/>
             </Style>
+            <!--<Style TargetType="Label" x:Key="SunRiseLabelStyle">
+                <Setter Property="FontFamily" Value="IcoFont"/>
+                <Setter Property="Text" Value=""/>
+            </Style>-->
 
             <!--Editor-->
             <Style TargetType="Editor">
@@ -46,7 +50,7 @@
             <Style TargetType="Label" x:Key="TitleStyle">
                 <Setter Property="FontSize" Value="Title"/>
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TitleColorDark}, Light={StaticResource TitleColorLight}}"/>
-            </Style>
+            </Style>           
 
             <!--BoxView-->
             <Style TargetType="BoxView">
@@ -64,6 +68,8 @@
             <FontImage x:Key="Person" FontFamily="Material" Glyph="&#xE7FD;" />
             <FontImage x:Key="People" FontFamily="Material" Glyph="&#xE7FB;" />
             <FontImage x:Key="Refresh" FontFamily="Material" Glyph="&#xE042;" />
+            <FontImage x:Key="SunRise" FontFamily="Material" Glyph="&#xED39;"  />
+            <FontImage x:Key="SunSet" FontFamily="Material" Glyph="&#xED3A;" />
             <FontImage x:Key="Remove" FontFamily="IcoFont" Glyph="&#xEE09;" />
             <FontImage x:Key="Settings" FontFamily="Material" Glyph="&#xE8B8;" />
             
@@ -102,6 +108,7 @@
             <Style TargetType="SwipeView">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"/>
             </Style>
+ 
 
         </ResourceDictionary>
     </Application.Resources>

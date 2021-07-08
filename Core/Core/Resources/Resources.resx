@@ -159,11 +159,17 @@
   <data name="last-updated" xml:space="preserve">
     <value>Last Updated</value>
   </data>
+  <data name="latest-TAF" xml:space="preserve">
+    <value>Latest TAF</value>
+  </data>
   <data name="location" xml:space="preserve">
     <value>Location</value>
   </data>
   <data name="locations" xml:space="preserve">
     <value>Locations</value>
+  </data>
+  <data name="metar-last-2h" xml:space="preserve">
+    <value>METAR for the last 2h</value>
   </data>
   <data name="name" xml:space="preserve">
     <value>Name</value>
