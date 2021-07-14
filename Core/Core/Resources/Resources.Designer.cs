@@ -358,6 +358,15 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Weather.
+        /// </summary>
+        internal static string weather {
+            get {
+                return ResourceManager.GetString("weather", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work.
         /// </summary>
         internal static string work {

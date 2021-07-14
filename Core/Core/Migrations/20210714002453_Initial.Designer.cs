@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20210708211101_Initial")]
+    [Migration("20210714002453_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,9 @@ namespace Core.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Fir")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FlightOperation")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IdIcao")

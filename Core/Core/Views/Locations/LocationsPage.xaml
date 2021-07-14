@@ -35,33 +35,89 @@
                                            IconImageSource="{StaticResource Remove}" Invoked="OnRemove"/>
                                 </SwipeView.RightItems>
 
-                                <!--content-->
                                 <Grid >
                                     <Frame Margin="9,3" HasShadow="True" >
-                                        <StackLayout >
-                                            <!--#region Id ICAO -->
-                                            <Label Text="{Binding Model.IdIcao, Mode=OneWay}"
-                                           TextTransform="Uppercase"
-                                           Style="{StaticResource TitleStyle}"/>
-                                            <!--#endregion-->
 
-                                            <!--#region Name -->
-                                            <Label Text="{Binding Model.Name, Mode=OneWay}"/>
-                                            <Label Text="{Binding Model.City, Mode=OneWay}"/>
-                                            
+
+                                        <StackLayout>
+                                            <Grid ColumnDefinitions="*,90"
+                                                  RowDefinitions="auto,auto,auto">
+
+                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Model.IdIcao, Mode=OneWay}"
+                                                       TextTransform="Uppercase"
+                                                       Style="{StaticResource TitleStyle}"/>
+
+                                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Model.Name, Mode=OneWay}"/>
+                                                <Label Grid.Row="2" Grid.Column="0" Text="{Binding Model.City, Mode=OneWay}"/>
+
+                                                <Grid Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="0" ColumnSpacing="10"
+                                                      ColumnDefinitions="auto,auto,auto,auto" 
+                                                      HorizontalOptions="CenterAndExpand">
+                                                    
+                                                    <Frame Grid.Column="0" Padding="5" HasShadow="True">
+                                                        <Label Text="{Binding Model.Notams.Count, Mode=OneWay,
+                                                            StringFormat='NOTAM = {0}'}"/>
+                                                    </Frame>
+                                                    <Frame Grid.Column="1" Padding="5" HasShadow="True">
+                                                        <Label Text="{Binding Model.AipSuplements.Count, Mode=OneWay,
+                                                            StringFormat='AIPSUP = {0}'}"/>
+                                                    </Frame>
+                                                    <Frame Grid.Column="2" Padding="5" HasShadow="True">
+                                                        <Label Text="{Binding Model.Fir, Mode=OneWay,
+                                                            StringFormat='FIR: {0}'}"/>
+                                                    </Frame>
+                                                </Grid>
+
+                                                <Frame Grid.Column="1" Grid.RowSpan="2" Padding="5" HasShadow="True" IsVisible="{Binding Model.HasMetar}">
+                                                    <Grid RowDefinitions="auto,auto">
+                                                        
+                                                        <Label Grid.Row="0" HorizontalTextAlignment="Center">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="{extensions:Translate weather}"/>
+                                                                    <Span FontFamily="IcoFont" Text=" &#xEE58;" FontSize="20"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>                                                        
+                                                        
+                                                        <Label Grid.Row="1" 
+                                                               HorizontalTextAlignment="Center"
+                                                               Text="{Binding Model.FlightOperation, Mode=OneWay}" FontAttributes="Bold">
+                                                            <Label.Triggers>
+                                                                <DataTrigger TargetType="Label" Binding="{Binding Model.FlightOperation}" Value="VFR">
+                                                                    <Setter Property="TextColor" Value="green" />
+                                                                </DataTrigger>
+                                                                <DataTrigger TargetType="Label" Binding="{Binding Model.FlightOperation}" Value="MVFR">
+                                                                    <Setter Property="TextColor" Value="DodgerBlue" />
+                                                                </DataTrigger>
+                                                                <DataTrigger TargetType="Label" Binding="{Binding Model.FlightOperation}" Value="IFR">
+                                                                    <Setter Property="TextColor" Value="Red" />
+                                                                </DataTrigger>
+                                                                <DataTrigger TargetType="Label" Binding="{Binding Model.FlightOperation}" Value="LIFR">
+                                                                    <Setter Property="TextColor" Value="DarkViolet" />
+                                                                </DataTrigger>
+                                                            </Label.Triggers>
+                                                        </Label>
+                                                    </Grid>
+                                                </Frame>
+
+
+                                            </Grid>
+
                                         </StackLayout>
+
+
+
+
                                     </Frame>
+
                                 </Grid>
                             </SwipeView>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
-        </RefreshView>       
-
+        </RefreshView>
     </StackLayout>
-    
-    
 
 </views:LocationsXaml>

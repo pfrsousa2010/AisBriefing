@@ -14,6 +14,7 @@ namespace Core.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(nullable: true),
                     Deleted = table.Column<bool>(nullable: false),
+                    FlightOperation = table.Column<string>(nullable: true),
                     IdIcao = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),

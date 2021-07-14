@@ -24,11 +24,17 @@ namespace Core.Models
         string elevationFeet;
         string fir;
         string utc;
+        string flightOperation;
 
         List<Metar> metars;
         List<Taf> tafs;
         #endregion
 
+        public string FlightOperation
+        {
+            get => flightOperation;
+            set => SetProperty(ref flightOperation, value);
+        }
 
         [JsonProperty(PropertyName = "icao")]
         public string IdIcao

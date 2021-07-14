@@ -216,6 +216,9 @@
   <data name="theme" xml:space="preserve">
     <value>Theme</value>
   </data>
+  <data name="weather" xml:space="preserve">
+    <value>Weather</value>
+  </data>
   <data name="work" xml:space="preserve">
     <value>Work</value>
   </data>

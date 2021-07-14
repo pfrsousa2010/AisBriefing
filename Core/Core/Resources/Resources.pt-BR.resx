@@ -201,4 +201,7 @@
   <data name="latest-TAF" xml:space="preserve">
     <value>Último TAF</value>
   </data>
+  <data name="weather" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
 </root>

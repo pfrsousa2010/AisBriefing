@@ -77,6 +77,9 @@ namespace Core.Migrations
                     b.Property<string>("Fir")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FlightOperation")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("IdIcao")
                         .HasColumnType("TEXT");
 

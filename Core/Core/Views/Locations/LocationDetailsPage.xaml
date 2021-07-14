@@ -129,9 +129,6 @@
                             <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Padding="5">
                                 <Label Text="{Binding Business.Model.TypeOpr, Mode=OneWay}"/>
                             </Frame>
-                            <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4" Padding="5">
-                                <Label Text="{Binding Business.Model.Fir, Mode=OneWay, StringFormat='FIR ( {0} )'}"/>
-                            </Frame>
 
                         </Grid>
                     </StackLayout>

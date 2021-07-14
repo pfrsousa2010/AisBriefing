@@ -172,6 +172,8 @@ namespace Core.Databases
                             MessageMetar = metar.MsgMetar,
                             FlightCategory = metar.FlightCat
                         });
+
+                        entity.FlightOperation = metar.FlightCat;
                     }
                     
                 }
@@ -410,13 +412,15 @@ namespace Core.Databases
                     foreach (var metar in item.Items)
                     {
                         var location = entities.Where(l => l.IdIcao == metar.StationId).FirstOrDefault();
-
+                        
                         var newMetar = new Models.Metar
                         {
                             MessageMetar = metar.MsgMetar,
-                            FlightCategory = metar.FlightCat,                            
+                            FlightCategory = metar.FlightCat,
                             Location = location
                         };
+
+                        location.FlightOperation = metar.FlightCat;
 
                         Database.Add(newMetar);
                     }
