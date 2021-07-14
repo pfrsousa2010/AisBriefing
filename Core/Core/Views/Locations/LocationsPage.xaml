@@ -40,8 +40,8 @@
 
 
                                         <StackLayout>
-                                            <Grid ColumnDefinitions="*,90"
-                                                  RowDefinitions="auto,auto,auto">
+                                            <Grid ColumnDefinitions="*,auto"
+                                                  RowDefinitions="auto,auto,auto,auto">
 
                                                 <Label Grid.Row="0" Grid.Column="0" Text="{Binding Model.IdIcao, Mode=OneWay}"
                                                        TextTransform="Uppercase"
@@ -51,7 +51,7 @@
                                                 <Label Grid.Row="2" Grid.Column="0" Text="{Binding Model.City, Mode=OneWay}"/>
 
                                                 <Grid Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="0" ColumnSpacing="10"
-                                                      ColumnDefinitions="auto,auto,auto,auto" 
+                                                      ColumnDefinitions="auto,auto,auto" 
                                                       HorizontalOptions="CenterAndExpand">
                                                     
                                                     <Frame Grid.Column="0" Padding="5" HasShadow="True">
@@ -68,20 +68,21 @@
                                                     </Frame>
                                                 </Grid>
 
-                                                <Frame Grid.Column="1" Grid.RowSpan="2" Padding="5" HasShadow="True" IsVisible="{Binding Model.HasMetar}">
-                                                    <Grid RowDefinitions="auto,auto">
+                                                <Frame  Grid.Column="1" Padding="10,1,10,3" HasShadow="True" IsVisible="{Binding Model.HasMetar}">
+                                                    <Grid ColumnDefinitions="auto,auto" ColumnSpacing="15">
                                                         
-                                                        <Label Grid.Row="0" HorizontalTextAlignment="Center">
+                                                        <Label Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                                                             <Label.FormattedText>
                                                                 <FormattedString>
-                                                                    <Span Text="{extensions:Translate weather}"/>
+                                                                    <Span Text="{extensions:Translate weather}" FontAttributes="Bold"/>
                                                                     <Span FontFamily="IcoFont" Text=" &#xEE58;" FontSize="20"/>
                                                                 </FormattedString>
                                                             </Label.FormattedText>
                                                         </Label>                                                        
                                                         
-                                                        <Label Grid.Row="1" 
+                                                        <Label Grid.Column="1" 
                                                                HorizontalTextAlignment="Center"
+                                                               VerticalTextAlignment="Center"
                                                                Text="{Binding Model.FlightOperation, Mode=OneWay}" FontAttributes="Bold">
                                                             <Label.Triggers>
                                                                 <DataTrigger TargetType="Label" Binding="{Binding Model.FlightOperation}" Value="VFR">

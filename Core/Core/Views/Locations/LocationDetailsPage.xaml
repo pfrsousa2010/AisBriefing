@@ -213,9 +213,16 @@
 
                 <!--Notams-->
                 <StackLayout HorizontalOptions="Center" Margin="10,10,10,1">
-                    <Label Grid.Column="1" Text="{Binding NotamsBusiness.Count, Mode=OneWay, StringFormat='NOTAM ( {0} )'}" 
-                           FontSize="20"
-                           HorizontalTextAlignment="Start"/>
+                    
+                    <Label HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="NOTAM" FontSize="20"/>
+                                <Span FontFamily="IcoFont" Text="    &#xEF8F;" FontSize="20"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    
                 </StackLayout>
                 <StackLayout BackgroundColor="Transparent" 
                          BindableLayout.ItemsSource="{Binding NotamsBusiness, Mode=OneWay}" Margin="10,2,10,5">
@@ -253,9 +260,15 @@
 
                 <!--Aip Suplement-->
                 <StackLayout HorizontalOptions="Center" Margin="10,10,10,1">
-                    <Label Grid.Column="2" Text="{Binding AipSuplementBusiness.Count, Mode=OneWay, StringFormat='AIP SUPLEMENT ( {0} )'}" 
-                           FontSize="20"  
-                           HorizontalTextAlignment="Center"/>
+
+                    <Label HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="AIP SUPLEMENT" FontSize="20"/>
+                                <Span FontFamily="IcoFont" Text="    &#xEFB6;" FontSize="20"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
                 <StackLayout BindableLayout.ItemsSource="{Binding AipSuplementBusiness}" Margin="10,2,10,5">
                     <BindableLayout.ItemTemplate>

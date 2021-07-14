@@ -87,7 +87,6 @@ namespace Core.ViewModels
                     return JsonConvert.DeserializeObject<Dictionary<string, Location>>(json).Select(x => x.Value);
                 }
             });
-
             
             if (Text.Trim().Length >= 3)
             {
