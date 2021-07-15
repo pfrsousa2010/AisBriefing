@@ -167,13 +167,23 @@ namespace Core.Databases
                 {
                     foreach (var metar in item.Items)
                     {
+                        entity.FlightOperation = metar.FlightCat;
+                        break;
+                    }
+
+                }
+
+                foreach (var item in metarAisWeb)
+                {
+                    foreach (var metar in item.Items)
+                    {
                         entity.Metars.Add(new Models.Metar
                         {
                             MessageMetar = metar.MsgMetar,
                             FlightCategory = metar.FlightCat
                         });
 
-                        entity.FlightOperation = metar.FlightCat;
+                        
                     }
                     
                 }
@@ -407,6 +417,19 @@ namespace Core.Databases
             // add metars
             if (metarsAisWeb != null || metarsAisWeb.Count > 0)
             {
+
+                foreach (var item in metarsAisWeb)
+                {
+                    foreach (var metar in item.Items)
+                    {
+                        var location = entities.Where(l => l.IdIcao == metar.StationId).FirstOrDefault();
+
+                        location.FlightOperation = metar.FlightCat;
+                        break;
+                    }
+
+                }
+
                 foreach (var item in metarsAisWeb)
                 {
                     foreach (var metar in item.Items)
@@ -419,8 +442,6 @@ namespace Core.Databases
                             FlightCategory = metar.FlightCat,
                             Location = location
                         };
-
-                        location.FlightOperation = metar.FlightCat;
 
                         Database.Add(newMetar);
                     }

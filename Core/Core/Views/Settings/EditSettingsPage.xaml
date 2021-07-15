@@ -18,7 +18,7 @@
         <!--#endregion-->
 
         <!--#region Theme -->
-        <Frame Margin="12,0">
+        <Frame Margin="12,0" HasShadow="True">
             <StackLayout Spacing="12">
 
                 <Label Text="{extensions:Translate theme}" Style="{StaticResource TitleStyle}"/>

@@ -21,10 +21,10 @@
         <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}" RefreshColor="DeepPink">
             
             <CollectionView ItemsSource="{Binding Items}"
-                    SelectionMode="Single"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                    SelectionChangedCommand="{Binding SelectCommand}"
-                    Margin="0,12">
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectCommand}"
+                            Margin="0,12">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
