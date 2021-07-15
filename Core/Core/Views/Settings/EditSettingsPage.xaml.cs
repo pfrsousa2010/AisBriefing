@@ -16,6 +16,11 @@ namespace Core.Views
             InitializeComponent();
             base.Initialize();
         }
+
+        private void about_Clicked(object sender, System.EventArgs e)
+        {
+            DisplayAlert("Contact", "aisbriefing.app@gmail.com", "OK");
+        }
     }
 
     public class EditSettingsXaml : BasePage<SettingsViewModel> { }

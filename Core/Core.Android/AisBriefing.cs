@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Core.Droid
 {
-    [Activity(Label = "SplashActivity", Theme = "@style/SplashTheme", MainLauncher = true, NoHistory =true, 
+    [Activity(Label = "AisBriefing", Icon ="@mipmap/icon" , Theme = "@style/SplashTheme", MainLauncher = true, NoHistory =true, 
         ConfigurationChanges = ConfigChanges.ScreenSize)]
     public class SplashActivity : Activity
     {

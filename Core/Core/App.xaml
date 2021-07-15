@@ -14,6 +14,7 @@
             <Color x:Key="TitleColorLight">Black</Color>
             <Color x:Key="BorderColorLight">WhiteSmoke</Color>
             <Color x:Key="BoxViewColorLight">LightGray</Color>
+            <Color x:Key="ButtonColorLight">LightGray</Color>
 
             <!-- Dark colors -->
             <Color x:Key="BackgroundColorDark">Black</Color>
@@ -21,6 +22,7 @@
             <Color x:Key="TitleColorDark">White</Color>
             <Color x:Key="BorderColorDark">DarkSlateGray</Color>
             <Color x:Key="BoxViewColorDark">DarkSlateGray</Color>
+            <Color x:Key="ButtonColorDark">lightGray</Color>
             
             <!--Page -->
             <Style TargetType="Page" ApplyToDerivedTypes="True">
@@ -31,10 +33,6 @@
             <Style TargetType="Label" ApplyToDerivedTypes="True">
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColorLight}}"/>
             </Style>
-            <!--<Style TargetType="Label" x:Key="SunRiseLabelStyle">
-                <Setter Property="FontFamily" Value="IcoFont"/>
-                <Setter Property="Text" Value=""/>
-            </Style>-->
 
             <!--Editor-->
             <Style TargetType="Editor">
@@ -56,7 +54,7 @@
             <Style TargetType="BoxView">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BoxViewColorDark}, Light={StaticResource BoxViewColorLight}}"/>
             </Style>
-            
+
             <!--Entries-->
             <Style TargetType="Entry">
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TitleColorDark}, Light={StaticResource TitleColorLight}}"/>
@@ -88,7 +86,8 @@
             
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BorderColorDark}, Light={StaticResource BorderColorLight}}"/>
-                <Setter Property="CornerRadius" Value="2"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
 
             <!--Frames -->

@@ -18,7 +18,7 @@
 
     <StackLayout >
 
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}">
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" Command="{Binding RefreshCommand}" RefreshColor="DeepPink">
             
             <CollectionView ItemsSource="{Binding Items}"
                     SelectionMode="Single"
@@ -47,7 +47,7 @@
                                                        TextTransform="Uppercase"
                                                        Style="{StaticResource TitleStyle}"/>
 
-                                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Model.Name, Mode=OneWay}"/>
+                                                <Label Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" Text="{Binding Model.Name, Mode=OneWay}"/>
                                                 <Label Grid.Row="2" Grid.Column="0" Text="{Binding Model.City, Mode=OneWay}"/>
 
                                                 <Grid Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="0" ColumnSpacing="10"

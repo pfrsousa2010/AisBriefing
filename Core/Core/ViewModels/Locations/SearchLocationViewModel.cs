@@ -31,8 +31,8 @@ namespace Core.ViewModels
             set => SetProperty(ref text, value);
         }
         public ICommand SearchCommand { get; }
-        public ICommand SelectedCommand { get; }        
-        
+        public ICommand SelectedCommand { get; }
+
         public AsyncCommand<Location> CallBackAsync
         {
             get => callBackAsync;
@@ -78,6 +78,8 @@ namespace Core.ViewModels
         {
             var searchLocations = await Task.Run(() =>
             {
+                IsBusy = true;
+
                 var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Views.LocationsPage)).Assembly;
                 Stream stream = assembly.GetManifestResourceStream("Core.Files.locations.json");
 
@@ -98,6 +100,8 @@ namespace Core.ViewModels
                 s.IdIcao == Text.ToUpper().Trim())
                 ).Take(100));
             }
+
+            IsBusy = false;
         }
     }
 }

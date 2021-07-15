@@ -15,15 +15,15 @@
     <FlexLayout WidthRequest="400">
         <ScrollView VerticalScrollBarVisibility="Never">
 
-            <StackLayout Spacing="1" >
+            <StackLayout Spacing="1">
 
                 <!--SunRise SunSet-->
-                <Grid ColumnDefinitions="*,*" BackgroundColor="Transparent" Margin="10,5,10,0">
-                    
+                <Grid ColumnSpacing="30" ColumnDefinitions="auto,auto" BackgroundColor="Transparent" Margin="10,0,10,0" HorizontalOptions="Center">
+
                     <Frame Grid.Column="0" HasShadow="True" Padding="10" Margin="0,15,0,15">
                         <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
                             <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE7F;" 
-                                   FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                   FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Label Grid.Column="1" Text="{Binding Business.Model.SunRise, Mode=OneWay, StringFormat='{0} UTC'}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
                                    FontAttributes="Bold"
@@ -34,7 +34,7 @@
                     <Frame Grid.Column="1" HasShadow="True" Padding="10" Margin="0,15,0,15">
                         <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
                             <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE80;" 
-                                   FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                   FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Label Grid.Column="1" Text="{Binding Business.Model.SunSet, Mode=OneWay, StringFormat='{0} UTC'}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
                                    FontAttributes="Bold"
@@ -210,28 +210,23 @@
 
                 </Frame>
 
-
                 <!--Notams-->
-                <StackLayout HorizontalOptions="Center" Margin="10,10,10,1">
-                    
-                    <Label HorizontalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="NOTAM" FontSize="20"/>
-                                <Span FontFamily="IcoFont" Text="    &#xEF8F;" FontSize="20"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    
-                </StackLayout>
                 <StackLayout BackgroundColor="Transparent" 
-                         BindableLayout.ItemsSource="{Binding NotamsBusiness, Mode=OneWay}" Margin="10,2,10,5">
+                         BindableLayout.ItemsSource="{Binding NotamsBusiness, Mode=OneWay}" Margin="10,15,10,5">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Margin="3">
                                 <Frame HasShadow="True">
                                     <StackLayout x:DataType="business:NotamBusiness">
-                                        <Label Text="{Binding Model.NotamId, Mode=OneWay, StringFormat='NOTAM ID - {0}'}"/>
+
+                                        <Label >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="IcoFont" Text="&#xEF8F;  " FontSize="18"/>
+                                                    <Span Text="{Binding Model.NotamId, Mode=OneWay, StringFormat='NOTAM ID - {0}'}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                         <BoxView Color="Gray" HeightRequest="2"/>
                                         <Label Text="{Binding Model.Message, Mode=OneWay}"
                                            LineHeight="1.25" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
@@ -255,21 +250,8 @@
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
-
-                <BoxView Color="Gray" HeightRequest="4"/>
-
+                
                 <!--Aip Suplement-->
-                <StackLayout HorizontalOptions="Center" Margin="10,10,10,1">
-
-                    <Label HorizontalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="AIP SUPLEMENT" FontSize="20"/>
-                                <Span FontFamily="IcoFont" Text="    &#xEFB6;" FontSize="20"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
                 <StackLayout BindableLayout.ItemsSource="{Binding AipSuplementBusiness}" Margin="10,2,10,5">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -277,8 +259,18 @@
                                 <Frame HasShadow="True">
                                     <StackLayout x:DataType="business:AipSuplementBusiness">
                                         <Grid RowDefinitions="*,*">
-                                            <Label Grid.Row="0" Text="{Binding Model.Serie, Mode=OneWay, StringFormat='AIP SUPLEMENT - Serie: {0}'}"/>
+
+                                            <Label Grid.Row="0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontFamily="IcoFont" Text="&#xEFB6;  " FontSize="18"/>
+                                                        <Span Text="{Binding Model.Serie, Mode=OneWay, StringFormat='AIP SUPLEMENT - Serie: {0}'}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
                                             <Label Grid.Row="1" Text="{Binding Model.Title, Mode=OneWay}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                            
                                         </Grid>
                                         <BoxView Color="Gray" HeightRequest="2"/>
                                         <Label Text="{Binding Model.Text, Mode=OneWay}"

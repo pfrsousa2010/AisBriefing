@@ -9,14 +9,17 @@
                              x:Class="Core.Views.SearchLocationPage"
                              Title="{extensions:Translate search-location}">
 
+    
+
     <Shell.SearchHandler>
         <SearchHandler  Command="{Binding SearchCommand, Mode=OneWay}" 
                         Query="{Binding Text, Mode=TwoWay}"
-                        Placeholder="ICAO, City or Name"/>
-    </Shell.SearchHandler>
+                        Placeholder="ICAO, City or Name"
+                        x:Name="SearchHandler"/>
+    </Shell.SearchHandler>    
 
     <StackLayout>
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshColor="DeepPink">
             <CollectionView ItemsSource="{Binding Items}"   
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
