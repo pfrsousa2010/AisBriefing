@@ -16,6 +16,7 @@ namespace Core.ViewModels
         public ObservableRangeCollection<AipSuplementBusiness> AipSuplementBusiness { get; }
 
 
+
         public LocationDetailsViewModel()
         {
             NotamsBusiness = new ObservableRangeCollection<NotamBusiness>();                     

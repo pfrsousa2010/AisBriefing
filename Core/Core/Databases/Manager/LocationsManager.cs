@@ -12,7 +12,6 @@ namespace Core.Databases
 {
     public class LocationsManager : BaseManager<Location>
     {
-        //Load the Notams added by location on starting
         public override IQueryable<Location> GetIncludes(IQueryable<Location> entities)
         {
             return entities
@@ -225,16 +224,17 @@ namespace Core.Databases
                     return;
                 }
 
-                await RefreshNotams(entities);
-                await RefreshMetars(entities);
-                await RefreshTafs(entities);
-
                 foreach (var item in entities)
                 {
                     await RefreshAipSuplements(item);
                     await RefreshSunTime(item);
                     await RefreshRotaer(item);
                 }
+
+                await RefreshNotams(entities);
+                await RefreshMetars(entities);
+                await RefreshTafs(entities);
+
             }
             catch (Exception e)
             {
@@ -400,12 +400,12 @@ namespace Core.Databases
             Database.SaveChanges();        
 
         }
-
+        
         public async Task RefreshMetars(List<Location> entities)
         {
 
             var icaoIds = string.Join(",", entities.Select(s => s.IdIcao));
-            var locationIds = entities.Select(s => s.Id);
+            var locationIds = entities.Select(s => s.Id);            
 
             var oldMetars = Database.Metars.Where(s => locationIds.Contains(s.LocationId));
             Database.RemoveRange(oldMetars);
@@ -414,19 +414,23 @@ namespace Core.Databases
 
             var metarsAisWeb = await aisWebService.GetMetar(icaoIds);
 
-            // add metars
             if (metarsAisWeb != null || metarsAisWeb.Count > 0)
             {
 
-                foreach (var item in metarsAisWeb)
+                foreach (var location in entities)
                 {
-                    foreach (var metar in item.Items)
-                    {
-                        var location = entities.Where(l => l.IdIcao == metar.StationId).FirstOrDefault();
+                    var flightOprAisWeb = await aisWebService.GetMetar(location.IdIcao);
 
-                        location.FlightOperation = metar.FlightCat;
-                        break;
+                    foreach (var item in flightOprAisWeb)
+                    {
+                        foreach (var metar in item.Items)
+                        {
+                            location.FlightOperation = metar.FlightCat;
+                            break;
+                        }
                     }
+
+                    Database.Update(location);
 
                 }
 

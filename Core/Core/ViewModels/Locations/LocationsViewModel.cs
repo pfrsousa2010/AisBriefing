@@ -24,7 +24,7 @@ namespace Core.ViewModels
         public LocationsViewModel()
         {
             SearchCommand = new AsyncCommand(OnSearch);
-            AddLocationCommand = new AsyncCommand<Location>(OnAddLocation);            
+            AddLocationCommand = new AsyncCommand<Location>(OnAddLocation);
         }
 
         private async Task OnAddLocation(Location location)

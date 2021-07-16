@@ -30,6 +30,7 @@ namespace Core.Models
         List<Taf> tafs;
         #endregion
 
+        [JsonIgnore]
         public string FlightOperation
         {
             get => flightOperation;
