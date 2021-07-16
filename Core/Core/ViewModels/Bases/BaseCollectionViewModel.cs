@@ -124,7 +124,13 @@ namespace Core.ViewModels
             SelectedItem = null;
 
             if (Items.Count == 0)
+            {
                 await OnLoad();
+                await Task.Delay(1000);
+                await OnRefresh();
+            }
+                
+            
         }
     }
 }
