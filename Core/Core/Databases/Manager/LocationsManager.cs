@@ -251,13 +251,18 @@ namespace Core.Databases
 
             if (sunTimeWeb != null)
             {
-                location.SunRise = sunTimeWeb.SunRiseWeb;
-                location.SunSet = sunTimeWeb.SunSetWeb;
+                if ((location.SunRise != sunTimeWeb.SunRiseWeb) && (location.SunSet != sunTimeWeb.SunSetWeb))
+                {
+                    location.SunRise = sunTimeWeb.SunRiseWeb;
+                    location.SunSet = sunTimeWeb.SunSetWeb;
 
-                Database.Update(location);
+                    Database.Update(location);
+
+                    Database.SaveChanges();
+                }
+                
             }
-
-            Database.SaveChanges();
+            
         }
 
         public async Task RefreshRotaer(Location location)
