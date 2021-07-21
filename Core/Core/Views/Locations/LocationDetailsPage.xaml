@@ -127,7 +127,10 @@
                                 <Label Text="{Binding Business.Model.Category, Mode=OneWay}"/>
                             </Frame>
                             <Frame HasShadow="True" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Padding="5">
-                                <Label Text="{Binding Business.Model.TypeOpr, Mode=OneWay}"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+                                <Label x:Name="labelTypeOpr" Text="{Binding Business.Model.TypeOpr, Mode=OneWay}"/>
                             </Frame>
 
                         </Grid>

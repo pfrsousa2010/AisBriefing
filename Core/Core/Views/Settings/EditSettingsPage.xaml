@@ -33,7 +33,8 @@
         </Frame>
         <!--#endregion-->
 
-        <Button x:Name="about" VerticalOptions="EndAndExpand" Margin="30" Clicked="about_Clicked" FontFamily="IcoFont" Text="&#xEEEA;  Developed by Paulo Felipe Sousa" FontSize="Small"/>
+        <Button VerticalOptions="Center" Margin="150" Clicked="about_Clicked" 
+                FontFamily="IcoFont" Text="{extensions:Translate about}" FontSize="Small"/>
         
     </StackLayout>
 </views:EditSettingsXaml>

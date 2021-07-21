@@ -204,4 +204,7 @@
   <data name="weather" xml:space="preserve">
     <value>Tempo</value>
   </data>
+  <data name="about" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
 </root>

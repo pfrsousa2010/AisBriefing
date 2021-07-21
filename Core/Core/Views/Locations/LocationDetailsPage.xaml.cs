@@ -17,6 +17,35 @@ namespace Core.Views
             InitializeComponent();
             base.Initialize();
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
+        {
+            if(labelTypeOpr.Text == "VFR IFR")
+            {
+                DisplayAlert("Tipo de Operação", "Operação VFR DIURNA e NOTURNA e IFR DIURNA e NOTURNA.", "OK");
+            }
+            else if(labelTypeOpr.Text == "IFR")
+            {
+                DisplayAlert("Tipo de Operação", "Operação VFR DIURNA e IFR DIURNA e NOTURNA.", "OK");
+            }
+            else if (labelTypeOpr.Text == "VFR")
+            {
+                DisplayAlert("Tipo de Operação", "Operação VFR DIURNA e NOTURNA.", "OK");
+            }
+            else if (labelTypeOpr.Text == "IFR DIURNA")
+            {
+                DisplayAlert("Tipo de Operação", "Operação VFR DIURNA e IFR DIURNA.", "OK");
+            }
+            else if (labelTypeOpr.Text == "VFR IFR DIURNA")
+            {
+                DisplayAlert("Tipo de Operação", "Operação VFR DIURNA e NOTURNA e IFR DIURNA.", "OK");
+            }
+            else
+            {
+                return;
+            }
+
+        }
     }
 
     public class LocationDetailsXaml : BasePage<LocationDetailsViewModel> { }
