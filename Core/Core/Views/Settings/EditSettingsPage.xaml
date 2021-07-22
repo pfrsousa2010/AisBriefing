@@ -33,7 +33,7 @@
         </Frame>
         <!--#endregion-->
 
-        <Button HorizontalOptions="Center"  Clicked="about_Clicked" VerticalOptions="Center"
+        <Button Margin="12,0" Clicked="about_Clicked" VerticalOptions="Center"
                 FontFamily="IcoFont" Text="{extensions:Translate about}" FontSize="Small"/>
 
     </StackLayout>
