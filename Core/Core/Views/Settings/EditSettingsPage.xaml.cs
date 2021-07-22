@@ -19,7 +19,7 @@ namespace Core.Views
 
         private void about_Clicked(object sender, System.EventArgs e)
         {
-            DisplayAlert("About the app", "Weather informations: \nAviation Weather Center \n\nAirport Informations: AIS WEB DECEA \n\nDeveloped by Paulo Felipe Sousa \n\nE-mail: aisbriefing.app@gmail.com", "OK");
+            DisplayAlert("About the app", "Weather informations: \nAviation Weather Center \n\nAirport Informations: \nAIS WEB DECEA \n\nDeveloped by Paulo Felipe Sousa \n\nE-mail: aisbriefing.app@gmail.com", "OK");
         }
     }
 
