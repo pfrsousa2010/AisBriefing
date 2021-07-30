@@ -18,31 +18,31 @@
             <StackLayout Spacing="1">
 
                 <!--SunRise SunSet-->
-                <Grid ColumnSpacing="30" ColumnDefinitions="auto,auto" BackgroundColor="Transparent" Margin="10,0,10,0" HorizontalOptions="Center">
-
-                    <Frame Grid.Column="0" HasShadow="True" Padding="10" Margin="0,15,0,15">
-                        <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
-                            <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE7F;" 
+                <Frame HasShadow="True" Margin="10,5,10,10" HorizontalOptions="Center" Padding="10" >
+                    <Grid ColumnDefinitions="auto,*,auto" >
+                        <StackLayout Grid.Column="0">
+                            <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
+                                <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE7F;" 
                                    FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                            <Label Grid.Column="1" Text="{Binding Business.Model.SunRise, Mode=OneWay, StringFormat='{0} UTC'}" 
+                                <Label Grid.Column="1" Text="{Binding Business.Model.SunRise, Mode=OneWay, StringFormat='{0} UTC'}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
                                    FontAttributes="Bold"
                                    FontSize="16"/>
-                        </Grid>
-                    </Frame>
-
-                    <Frame Grid.Column="1" HasShadow="True" Padding="10" Margin="0,15,0,15">
-                        <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
-                            <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE80;" 
+                            </Grid>
+                        </StackLayout>
+                       
+                        <StackLayout Grid.Column="2">
+                            <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
+                                <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE80;" 
                                    FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                            <Label Grid.Column="1" Text="{Binding Business.Model.SunSet, Mode=OneWay, StringFormat='{0} UTC'}" 
+                                <Label Grid.Column="1" Text="{Binding Business.Model.SunSet, Mode=OneWay, StringFormat='{0} UTC'}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
                                    FontAttributes="Bold"
                                    FontSize="16"/>
-                        </Grid>
-                    </Frame>
-
-                </Grid>
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
 
                 <!--Rotaer-->
                 <Frame HasShadow="True" Margin="10,0,10,5" Padding="10">
