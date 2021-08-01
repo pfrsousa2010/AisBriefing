@@ -19,8 +19,8 @@
 
                 <!--SunRise SunSet-->
                 <Frame HasShadow="True" Margin="10,5,10,10" HorizontalOptions="Center" Padding="10" >
-                    <Grid ColumnDefinitions="auto,*,auto" >
-                        <StackLayout Grid.Column="0">
+                    <Grid>
+                        <StackLayout Grid.Column="0" HorizontalOptions="Start">
                             <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
                                 <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE7F;" 
                                    FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -31,7 +31,7 @@
                             </Grid>
                         </StackLayout>
                        
-                        <StackLayout Grid.Column="2">
+                        <StackLayout Grid.Column="1" HorizontalOptions="End">
                             <Grid ColumnDefinitions="auto,auto" HorizontalOptions="CenterAndExpand">
                                 <Label Grid.Column="0" FontFamily="IcoFont" Text="&#xEE80;" 
                                    FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
