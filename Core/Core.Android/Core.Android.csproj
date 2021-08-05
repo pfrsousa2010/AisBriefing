@@ -64,6 +64,8 @@
     <AndroidSupportedAbis />
     <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
     <AndroidLinkTool>r8</AndroidLinkTool>
+    <AndroidTlsProvider>
+    </AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Label="MultilingualAppToolkit">
     <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
